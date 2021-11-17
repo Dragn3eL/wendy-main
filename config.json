@@ -1,0 +1,13 @@
+{
+
+    "OWNER_ID":"672695020100386846",
+    "BOT_TOKEN": "NzI0MTM1NTU0OTY2MzU1OTY4.Xu7xyg.J_u4EALEEdnVz5PF9nWM6vbpa4o",
+    "tenorAPI":"ZEEELJXAFQBN",
+    "DEFAULT_PREFIX":"w!",
+    "mongoPass": "mongodb+srv://dragneel:ursidae19@cluster0.rfyv7.mongodb.net/test",
+    "ERROR_LOGS_CHANNEL": "901291703724572703",
+    "ALEXFLIPNOTE_API_KEY":"",
+    "YT_COOKIE": ""
+    
+}
+
