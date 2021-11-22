@@ -26,8 +26,8 @@ module.exports = {
     
     let embed = new discord.MessageEmbed()
     .setAuthor("Ping Pong!", message.author.avatarURL())
-    .addField("<a:kawaii:800603315275563039> Mah Heart |API ", Math.round(client.ws.ping) + "ms", true)
-    .addField("<a:latency:800603282585157663> Latency", end - start + "ms", true)
+    .addField("<a:KAWAII:747082492770517072> Mah Heart |API ", Math.round(client.ws.ping) + "ms", true)
+    .addField("<a:latency:898147640573833269> Latency", end - start + "ms", true)
     .setColor("RANDOM")
     .setFooter(` Uptime = ${uptime}`,client.user.displayAvatarURL())
     m.edit({ embeds: [embed] })

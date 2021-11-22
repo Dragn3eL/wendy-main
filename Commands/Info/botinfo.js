@@ -20,10 +20,10 @@ module.exports = {
       .format(" D [days], H [hrs], m [mins], s [secs]");
 
     let embed = new Discord.MessageEmbed()
-      .setAuthor("REAPER-,2.0's Info", client.user.avatarURL())
+      .setAuthor("Wendy's Info", client.user.avatarURL())
       .setColor("RANDOM")
       .setDescription(
-        `**Bot Name: **Reaper \n**Owner: **[YOUR_NAME_HERE] \n**Total Categories: **8 \n**Total Commands: **${client.commands.size} \n**Users:** ${
+        `**Bot Name: **Reaper \n**Developer: ** Dragneel \n**Total Categories: **8 \n**Total Commands: **${client.commands.size} \n**Users:** ${
           client.users.cache.size
         } \n**Servers:** ${client.guilds.cache.size} \n**Channels:** ${
           client.channels.cache.size

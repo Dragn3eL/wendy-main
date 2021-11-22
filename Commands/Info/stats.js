@@ -36,39 +36,32 @@ module.exports = {
             `Requested by ${message.author.username}#${message.author.discriminator}`,
             message.author.displayAvatarURL
           )
-          .addField(
-            ":floppy_disk: Memory usage",
-            `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(
-              os.totalmem() /
-              1024 /
-              1024
-            ).toFixed(2)} MB`,
-            true
-         )
-          .addField(":minidisc: CPU usage", `\`${percent.toFixed(2)}%\``, true)
-          .addField(
-            "CPU",
-            `\`\`\`md\n${os.cpus().map((i) => `${i.model}`)[0]}\`\`\``,
-            true
-          )
-         // .addField(":computer: System", `\`${os.arch()}\``, true)
+          .addField("System Stats", `\`\`\`yml\nMemory usage : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(
+            os.totalmem() /
+            1024 /
+            1024
+          ).toFixed(2)} MB \nCPU usage : ${percent.toFixed(2)}%\nCPU : ${os.cpus().map((i) => `${i.model}`)[0]}\`\`\``,true)
+          
+          
+          
+          
+         
+          //.addField(":minidisc: ", `\`${percent.toFixed(2)}%\``, true)
+          // .addField(
+          //   "CPU",
+          //   `\`\`\`md\n\`\`\``,
+          //   true
+          // )
+          //.addField(":computer: System", `\`${os.arch()}\``, true)
          // .addField(":desktop: Platform", `\`\`${os.platform()}\`\``, true)
          .addField(`Bot Stats`, `\`\`\`yml\nUsers : ${client.users.cache.size} \nHomes : ${client.guilds.cache.size}\nChannels : ${client.channels.cache.size}\`\`\``,true)
           
       //    .addField("Commands Count", "``11``", true)
-         .addField("Library", `\`\`\`yml\nLibrary: ${js} \nNode.js: ${process.version}\nDiscord.js: v${version}\`\`\``, true)
+         .addField("<:bookshelf:908966883070447646> Library", `\`\`\`yml\nLibrary: ${js} \nNode.js: ${process.version}\nDiscord.js: v${version}\`\`\``, true)
         
-          .addField(
-            ":stopwatch: Uptime & Ping",
-            `${duration} / ${Math.round(client.ws.ping)}ms`,
-            true
-          )
-        // .addField(":stopwatch: Server uptime", `${pms(os.sysUptime())}`, true)
-          .addField(
-            ":calendar_spiral: Created On",
-            `${client.user.createdAt}`,
-            true
-          );
+          
+          .addField("OF me ", `\`\`\`yml\nBorn in: ${client.user.createdAt} \nPing: ${Math.round(client.ws.ping)}\nUptime: ${duration}\`\`\``, true)
+          
         message.channel.send({ embeds: [RynEmb] });
       });
     } catch (err) {
