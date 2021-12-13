@@ -13,7 +13,7 @@ module.exports = async(interaction, client) => {
             const settingsEmbed = new Discord.MessageEmbed()
         .setTitle("Config Commands")
         .setDescription(
-          " `antilink` |  `dashboard` |  `prefix`"
+          " use w!dashboard <admin> for all admin setup cmds"
         )
         .setColor("RANDOM");
 
@@ -26,7 +26,7 @@ module.exports = async(interaction, client) => {
          const musicEmbed = new Discord.MessageEmbed()
          .setTitle(`Music Commands`)
          .setDescription("`clearqueue`, `filter`, `filter list`, `info`, `jump`, `loop`, `lyrics`, `move`, `mute`, `pause`, `play`, `previoustrack`, `queue`, `remove`, `resume`, `unmute`, `volume`, `youtube`\n\n```Note: Music commands work only with slash commands!\nBe sure to use music before each command!```")
-         .setColor("BLUE")
+         .setColor("#29cddc")
  
          await msg.edit({ embeds: [musicEmbed] })
 
@@ -39,35 +39,11 @@ module.exports = async(interaction, client) => {
         .setDescription(
           "`botinfo`, `devteam`, `emojiid`, `help`, `invite`, `ping`, `policy`, `report`, `userinfo`, `userid`, `serverinfo`, `suggest`"
         )
-        .setColor("RANDOM");
+        .setColor("#9bff00");
 
         await msg.edit({ embeds: [infoEmbed] })
 
-        } else if (interaction.values[0] === "moderation") {
-            await interaction.deferUpdate()
-
-            const modEmbed = new Discord.MessageEmbed()
-            .setTitle("Moderation Commands")
-            .setDescription(
-              "`kick`, `ban`, `softban`, `mute`, `unmute`, `tempmute`"
-            )
-            .setColor("RANDOM");
-
-            await msg.edit({ embeds: [modEmbed] })
-
-        } else if (interaction.values[0] === "nsfw") {
-            await interaction.deferUpdate()
-
-            const nsfwEmbed = new Discord.MessageEmbed()
-        .setTitle("NSFW Commands")
-        .setDescription(
-          "`4k`, `anal`, `ass`, `blowjob`, `boobs`, `cumsluts`, `erokemo`, `danbooru`, `kitsune`, `hentai`, `hentaiass`, `hentaithigh`, `gonewild`, `milf`, `feetgif`, `pussy`, `porngif`, `urban`, `thigh`, `lewd`"
-        )
-        .setColor("RANDOM");
-
-        await msg.edit({ embeds: [nsfwEmbed] })
-
-        } else if (interaction.values[0] === "utility") {
+        }  else if (interaction.values[0] === "utility") {
             await interaction.deferUpdate()
 
             const utilityEmbed = new Discord.MessageEmbed()
@@ -75,21 +51,10 @@ module.exports = async(interaction, client) => {
         .setDescription(
           "`avatar`, `animesearch`, `announce`, `calculator`, `clear`, `createrole`, `delchannel`, `delrole`, `enlargemoji`, `esay`, `giverole`, `google`, `imdb`, `lock`, `newtext`, `newvoice`, `nickname`, `poll`, `removerole`, `say`, `servericon`, `serverinfo`, `suggestion`, `translate`, `unlock`, `weather`, `wiki`, `youtube`"
         )
-        .setColor("RANDOM");
+        .setColor("#eec9b0");
 
         await msg.edit({ embeds: [utilityEmbed] })
 
-      } else if (interaction.values[0] === "game") {
-            await interaction.deferUpdate()
-
-          const gameEmbed = new Discord.MessageEmbed()
-        .setTitle("Game Commands")
-        .setDescription(
-          "`connect4`, `catchthefish`, `fasttype`, `football`, `gunfight`, `guessthenumber`, `rps`, `snake`, `ttt`"
-        )
-        .setColor("RANDOM");
-
-        await msg.edit({ embeds: [gameEmbed] })
-      }
+      } 
     }
 }

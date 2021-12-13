@@ -18,7 +18,7 @@ module.exports = {
 
      let pingEmbed = new discord.MessageEmbed()
      .setDescription("Looks like the bot is slow.xD")
-     .setColor("RANDOM")
+     .setColor("#29cddc")
   
   message.channel.send({ embeds: [pingEmbed] }).then(m => {
     

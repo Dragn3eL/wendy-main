@@ -1,9 +1,9 @@
-const autoroleData = require("../../../database/guildData/autorole")
+const autoroleData = require("../../../database/guildData/djrole")
 
 module.exports = async(interaction, client) => {
     if (!interaction.isSelectMenu()) return;
     let msg = await interaction.channel.messages.fetch(interaction.message.id)
-    if (interaction.values[0] === "autorole") {
+    if (interaction.values[0] === "dj") {
 
         await interaction.deferUpdate()
 
@@ -27,7 +27,7 @@ module.exports = async(interaction, client) => {
                 })
     
                 newData.save();
-            return msg.edit(`Autorole set to ${interaction.guild.roles.cache.get(role)}`)
+            return msg.edit(`DJRole set to ${interaction.guild.roles.cache.get(role)}`)
 
         } else if (data) {
             
@@ -35,7 +35,7 @@ module.exports = async(interaction, client) => {
                 GuildID: interaction.guild.id
             })
 
-            return msg.edit(`Autorole has been disabled!`)
+            return msg.edit(`DJROLE has been disabled\n use w!setdj <@role> or use the dropdown dj to reset it again!`)
         }
     }
 }

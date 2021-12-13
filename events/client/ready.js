@@ -2,13 +2,15 @@ const chalk = require("chalk");
 const mongoose = require("mongoose");
 
 const { mongoPass } = require("../../config.json"); 
+var os = require('os-utils');
 module.exports = (client) => {
  client.user.setPresence({ status: "idle" });
 
 const activities = [
       `${client.guilds.cache.size} Homes`,
       `${client.users.cache.size} awsome people`,
-      `on update validation`
+      `on update validation`,
+      `CPU : ${os.cpuCount()}`
 
 ]
  let i =0;
@@ -48,7 +50,7 @@ const activities = [
     .then(
       console.log(
         chalk.bgGreenBright.black(
-          ` ${client.user.username} connecting to Mongo DB `
+          ` ${client.user.username} connected to Mongo DB `
         )
       )
     )

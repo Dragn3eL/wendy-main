@@ -11,7 +11,7 @@ let js = "discord.js"
 
 module.exports = {
   name: "stats",
-  descriptiom: "Get Inifnity's Stats",
+  descriptiom: "Get Wendy's Stats",
   botPerms: ["EMBED_LINKS"],
   run: async (client, message, args, level) => {
     // eslint-disable-line no-unused-vars
@@ -27,16 +27,16 @@ module.exports = {
           .format(" D [days], H [hrs], m [mins], s [secs]");
         let bicon = client.user.displayAvatarURL;
         const RynEmb = new Discord.MessageEmbed()
-          .setAuthor(client.user.username, client.user.displayAvatarURL)
-          .setDescription("Wendy Stats:")
+          .setAuthor(client.user.username + " -stats", client.user.displayAvatarURL)
+          //.setDescription("**Wendy Stats:**")
           .setTimestamp()
           .setThumbnail(bicon)
-          .setColor("RANDOM")
+          .setColor("#29cddc")
           .setFooter(
             `Requested by ${message.author.username}#${message.author.discriminator}`,
             message.author.displayAvatarURL
           )
-          .addField("System Stats", `\`\`\`yml\nMemory usage : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(
+          .addField("<:statistics:839431481327353916> System Stats", `\`\`\`yml\nMemory usage : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(
             os.totalmem() /
             1024 /
             1024
@@ -54,13 +54,13 @@ module.exports = {
           // )
           //.addField(":computer: System", `\`${os.arch()}\``, true)
          // .addField(":desktop: Platform", `\`\`${os.platform()}\`\``, true)
-         .addField(`Bot Stats`, `\`\`\`yml\nUsers : ${client.users.cache.size} \nHomes : ${client.guilds.cache.size}\nChannels : ${client.channels.cache.size}\`\`\``,true)
+         .addField(`<:stats:745360693166866544> Bot Stats`, `\`\`\`yml\nUsers : ${client.users.cache.size} \nHomes : ${client.guilds.cache.size}\nChannels : ${client.channels.cache.size}\`\`\``,true)
           
       //    .addField("Commands Count", "``11``", true)
          .addField("<:bookshelf:908966883070447646> Library", `\`\`\`yml\nLibrary: ${js} \nNode.js: ${process.version}\nDiscord.js: v${version}\`\`\``, true)
         
           
-          .addField("OF me ", `\`\`\`yml\nBorn in: ${client.user.createdAt} \nPing: ${Math.round(client.ws.ping)}\nUptime: ${duration}\`\`\``, true)
+          .addField(" me ", `\`\`\`yml\nBorn in: ${client.user.createdAt} \nPing: ${Math.round(client.ws.ping)}\nUptime: ${duration}\`\`\``, true)
           
         message.channel.send({ embeds: [RynEmb] });
       });

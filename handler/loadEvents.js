@@ -36,7 +36,7 @@ function loadEvents(client) {
 
 
   // other events
-  client.on("messageCreate", (m) => otherEvent("antilinks")(m));
+  client.on("guildMemberAdd", (m) => otherEvent("djrole")(m));
   client.on("messageCreate", (m) => otherEvent("antiwords")(m));
   client.on("guildMemberAdd", (m) => otherEvent("autorole")(m));
   client.on("guildMemberAdd", (m) => otherEvent("welcome")(m));
@@ -44,8 +44,8 @@ function loadEvents(client) {
 
   // Menu Events
   client.on('interactionCreate', (m) => menuEvents("help")(m, client));
-  client.on("interactionCreate", (m) => menuEvents("antilink")(m, client));
-  client.on("interactionCreate", (m) => menuEvents("autorole")(m, client));
+  client.on("interactionCreate", (m) => menuEvents("djrole")(m, client));
+  //client.on("interactionCreate", (m) => menuEvents("autorole")(m, client));
   client.on("interactionCreate", (m) => menuEvents("automod")(m, client));
   client.on('interactionCreate', (m) => menuEvents('prefix')(m, client));
   client.on("interactionCreate", (m) => menuEvents("welcomeChannel")(m, client));

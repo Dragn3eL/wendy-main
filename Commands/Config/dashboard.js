@@ -19,9 +19,9 @@ module.exports = {
                 .setMaxValues(1)
                 .addOptions([
                     {
-                        label: "Antilink",
-                        description: "Enable or Disable Antilink System!",
-                        value: "antilink",
+                        label: "DJ",
+                        description: "DJ settings!",
+                        value: "dj",
                     },
                     
                     

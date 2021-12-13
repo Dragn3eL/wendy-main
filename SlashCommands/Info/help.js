@@ -29,12 +29,7 @@ module.exports = {
           emoji: "🛠"
         },
         
-        {
-          label: "Image",
-          description: "Shows all the image commands",
-          value: "image",
-          emoji: "🖼"
-        },
+       
         {
           label: "Information",
           description: "Shows all the information commands",
@@ -55,12 +50,7 @@ module.exports = {
           value: "utility",
           emoji: "🔧"
         },
-        {
-          label: "Games",
-          description: "Shows all the game commands",
-          value: "game",
-          emoji: "🎮"
-        }
+       
       ])
     )
 

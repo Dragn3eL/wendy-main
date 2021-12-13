@@ -18,7 +18,7 @@ module.exports = {
       .setAuthor(`New Suggestion!`, avatar)
       .setDescription(`${suggestion} \n\nBy: ${message.author.tag}`)
       .setFooter(`ID: ${message.author.id}`)
-      .setColor("RANDOM");
+      .setColor("#9bff00");
 
     suggestchannel.send({ embeds: [embed] });
   },

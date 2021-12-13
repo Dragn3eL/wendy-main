@@ -9,35 +9,39 @@
 
 const Discord = require("discord.js");
 const moment = require("moment");
+const { DEFAULT_PREFIX } = require("../../config.json")
 require("moment-duration-format");
 module.exports = {
   name: "botinfo",
+  aliases: "[wendy]",
+  usage: "botinfo | wendy",
   description: "Shows the bot info",
+
   botPerms: ["EMBED_LINKS"],
   run: async (client, message, args) => {
+    
     const duration = moment
       .duration(client.uptime)
       .format(" D [days], H [hrs], m [mins], s [secs]");
 
     let embed = new Discord.MessageEmbed()
       .setAuthor("Wendy's Info", client.user.avatarURL())
-      .setColor("RANDOM")
+      .setColor("#29cddc")
       .setDescription(
-        `**Bot Name: **Reaper \n**Developer: ** Dragneel \n**Total Categories: **8 \n**Total Commands: **${client.commands.size} \n**Users:** ${
+        `Konichiwa | hello | namaste am <@724135554966355968>, a discord music bot in beta  ,am pretty descent with support of Youtube <a:ayoutube:919582561783668776> and spotify <:spotify:919582094391398430> and Soundcloud <:souncloud:919756799303888956> :), looking forward to grow with everyone cause i am short xD  \n
+     
+        `)
+      .addField(`<:developer:919584435186331658> Developer`,`\`\`\`yml\nDragneel#1255\`\`\``,true)  
+     
+        
+       .addField( `<:info:919584891631448115> INFO`,`\`\`\`yml\nPrefix: ${DEFAULT_PREFIX} \nTotal Commands: ${client.commands.size} \nUsers: ${
           client.users.cache.size
-        } \n**Servers:** ${client.guilds.cache.size} \n**Channels:** ${
+        } \nServers: ${client.guilds.cache.size} \nChannels: ${
           client.channels.cache.size
-        }`
+        }\`\`\``,true
       )
-      .addField(
-        "About Reaper-2.0",
-        "Reaper-2.0 is an open-source multi-purpose discord bot with features like moderation, music, logging, welcomer and so much more!\nYou can find the link to the [GitHub Repo Here](https://github.com/Simpleboy353/REAPER-2.0)"
-      )
-      .addField(
-        "Some Useful Links",
-        "**Get your own bot!** **[Here](https://github.com/Simpleboy353/REAPER-2.0)** \n**Need Help? Join our ** **[Support/Development Server](https://infinitybot.tk/support)** **for assistance**"
-      )
-      .setFooter("Regards, Reaper-2.0 Development Team");
+     
+      .setFooter("For any queries or help join our support server \`w!support\` :)",client.user.displayAvatarURL());
     message.channel.send({ embeds: [embed] });
   },
 };

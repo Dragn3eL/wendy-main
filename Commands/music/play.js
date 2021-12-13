@@ -2,12 +2,13 @@ const { player } = require("discord-player");
 const {client,message} = require ('discord.js')
 const {QueryType} = require('discord-player')
 const {MessageEmbed} = require("discord.js")
+const { DEFAULT_PREFIX } = require("../../config.json")
 
 module.exports = {
     name: "play",
     aliases: ["p"],
     category: "Music",
-    usage: "p",
+    usage: `${DEFAULT_PREFIX}p <Title/song url>`,
     description: "play a requested song!",
     ownerOnly: false,
     nsfwOnly: false,

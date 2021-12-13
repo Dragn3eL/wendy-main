@@ -19,7 +19,7 @@ module.exports = {
       .setTitle("New Bug Report")
       .setDescription(`${report} \n\nBy: ${message.author.tag}`)
       .setFooter(`User ID: ${message.author.id}`)
-      .setColor("RANDOM");
+      .setColor("#ff2d3f");
 
     reportchannel.send({embeds: [embed]});
   },

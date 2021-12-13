@@ -11,7 +11,7 @@ module.exports = {
     let user = message.mentions.users.first() || message.author;
     let embed = new discord.MessageEmbed()
       .setColor("RANDOM")
-      .setTitle(`${user.username}'s Avatar`)
+      .setAuthor(`${user.username}'s Avatar`,client.user.displayAvatarURL())
       .setDescription(
         `[Avatar Link](${user.displayAvatarURL({
           size: 2048,
@@ -19,7 +19,10 @@ module.exports = {
           format: "png",
         })})`
       )
+      .setFooter(`Nice pic | UwU`)
+      .setTimestamp()
       .setImage(user.avatarURL({ size: 2048, dynamic: true, format: "png" }));
+     
 
     message.channel.send({ embeds: [embed] });
     message.delete();

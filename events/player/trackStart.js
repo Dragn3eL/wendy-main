@@ -1,13 +1,17 @@
 //const { MessageEmbed } = require("discord.js");
 //const { QueueRepeatMode } = require('discord-player')
-const {client,message} = require ('discord.js')
+const {client,message, Interaction} = require ('discord.js')
 const Discord = module.require("discord.js");
 const moment = require("moment");
 require("moment-duration-format");
 const { MessageEmbed , MessageActionRow, MessageButton } = require("discord.js");
-const { QueueRepeatMode } = require('discord-player')
+const { QueueRepeatMode } = require('discord-player');
+const { isAsyncFunction } = require('util/types');
 
-module.exports = async( queue,track,client,message, args) => {
+module.exports = async( queue,track,client,message, args,) => {
+   
+
+
     if (!client.utils.havePermissions(queue.metadata.channel)) return;
 
 // const song = client.player.getQueue(message.guild.id);
@@ -22,7 +26,7 @@ module.exports = async( queue,track,client,message, args) => {
 	   	{ name: 'Duration', value: `\`${track.duration}\`` , inline: true },
 	 )
        .setThumbnail(track.thumbnail)
-      .setFooter(`UwU`,client.user.displayAvatarURL());
+      .setFooter(` mOOSIc IN ${queue.guild.name}`,client.user.displayAvatarURL());
 
   // .setTitle("Now playing")
   // .setColor(queue.guild.me.displayColor || "BLUE")
@@ -37,27 +41,27 @@ module.exports = async( queue,track,client,message, args) => {
   const playPause = new MessageButton()
   .setCustomId("playPause")
   .setStyle("SUCCESS")
-  .setEmoji("⏯")
+  .setLabel("Pause")
 
   const skip = new MessageButton()
   .setCustomId("skip")
   .setStyle("SUCCESS")
-  .setEmoji("⏭")
+  .setLabel("Skip")
 
   const repeat = new MessageButton()
   .setCustomId("repeat")
   .setStyle("SUCCESS")
-  .setEmoji("🔁")
+  .setLabel("Loop")
 
   const stop = new MessageButton()
   .setCustomId("stop")
-  .setStyle("SUCCESS")
-  .setEmoji("⏹")
+  .setStyle("DANGER")
+  .setLabel("Stop")
 
   const shuffle = new MessageButton()
   .setCustomId("shuffle")
   .setStyle("SUCCESS")
-  .setEmoji("🔀")
+  .setLabel("Shuffle")
 
   const volumeLess = new MessageButton()
   .setCustomId("volumeLess")
@@ -105,8 +109,7 @@ module.exports = async( queue,track,client,message, args) => {
     }
 
     switch (button.customId) {
-
-      
+ 
       case "playPause":
         await button.deferUpdate();
       //  if (!client.utils.canModifyQueue(queue.metadata)) return;
@@ -116,17 +119,13 @@ module.exports = async( queue,track,client,message, args) => {
 
 const pause = new MessageEmbed()
           .setColor('#ee1616')
-          .setDescription(`Paused the music\nType slash resume or w!resume to resume`)
+          .setDescription(`Paused the music`)
           .setTimestamp()
          // .setThumbnail('https://cdn.discordapp.com/attachments/726134541638697042/731828280814207016/play-pause.gif')
          .setFooter(`UwU`,client.user.displayAvatarURL())
 
-      
-
-
-          return queue.metadata.channel.send({embeds:[pause],ephemeral:true }).then(msg => {
-    queue.metadata.delete()
-    setTimeout(() => msg.delete(), 2000)
+          return queue.metadata.channel.send({embeds:[pause],ephemeral:true }).then(async(msg)=> {
+      setTimeout(() => msg.delete(), 8000)
   })
   .catch()
 
@@ -137,7 +136,15 @@ const pause = new MessageEmbed()
           
         } else if (queue.connection.paused) {
           queue.setPaused(false);
-          return queue.metadata.channel.send({ content: "Resumed the music!", ephemeral: true })
+          const resume = new MessageEmbed()
+          .setColor('#7be58b')
+          .setDescription(`Resumed  music`)
+          .setTimestamp()
+          .setFooter(`ヅ`,`https://cdn.discordapp.com/emojis/775531595620417536.gif?v=1`)
+          return queue.metadata.channel.send({ embeds:[resume], ephemeral: true }).then(async(msg)=> {
+            setTimeout(() => msg.delete(), 8000)
+        })
+        .catch()
         }
         break;
       
@@ -146,10 +153,18 @@ const pause = new MessageEmbed()
         //if (!client.utils.canModifyQueue(queue.metadata)) return;
 
         if (queue.tracks.length < 3 && queue.repeatMode !== 3) {
-          return queue.metadata.followUp({ content: "No more songs in the queue to skip!", ephemeral: true })
+          const nosongs = new MessageEmbed().setColor("#ee1616").setDescription(`Currently no more songs in the queue :(`).setTimestamp().setFooter(`ت`,`https://cdn.discordapp.com/attachments/726134541638697042/799268980963541012/ezgif.com-gif-maker_17.gif`)
+          return queue.metadata.channel.send({ embeds:[nosongs], ephemeral: true }).then(async(msg)=> {
+            setTimeout(() => msg.delete(), 3000)
+        })
+        .catch()
         } else {
           queue.skip();
-          queue.metadata.followUp({ content: "Skipped the current song!", ephemeral: true })
+          const skip = new MessageEmbed().setColor("#29cddc").setDescription(`Skipping current music`).setFooter(`㋡`,`https://cdn.discordapp.com/attachments/726134541638697042/799268980963541012/ezgif.com-gif-maker_17.gif`).setTimestamp()
+          queue.metadata.channel.send({ embeds:[skip], ephemeral: true }).then(async(msg)=> {
+            setTimeout(() => msg.delete(), 3000)
+        })
+        .catch()
         }
         break;
 
@@ -158,18 +173,33 @@ const pause = new MessageEmbed()
        // if (!client.utils.canModifyQueue(queue.metadata)) return;
         if (!queue.repeatMode) {
           queue.setRepeatMode(QueueRepeatMode.QUEUE)
-          queue.metadata.followUp({ content: "Loop mode has been enabled!", ephemeral: true})
+          const enabled = new MessageEmbed().setColor("#7be58b").setDescription("Loop mode is now **enabled**!").setFooter('ｼ',`https://cdn.discordapp.com/emojis/775531595620417536.gif?v=1`).setTimestamp()
+          queue.metadata.channel.send({ embeds:[enabled], ephemeral: true}).then(async(msg)=> {
+            setTimeout(() => msg.delete(), 3000)
+        })
+        .catch()//#7be58b //#ee1616
         } else if (queue.repeatMode) {
           queue.setRepeatMode(QueueRepeatMode.OFF)
-          queue.metadata.followUp({ content: "Loop mode has been disabled!", ephemeral: true})
+          const disabled = new MessageEmbed().setColor("#29cddc").setDescription("Loop mode has been **disabled**!").setFooter('ｼ',`https://cdn.discordapp.com/emojis/775531595620417536.gif?v=1`).setTimestamp()
+          queue.metadata.channel.send({ embeds:[disabled], ephemeral: true}).then(async(msg)=> {
+            setTimeout(() => msg.delete(), 3000)
+        })
+        .catch()
         }
         break;
         
       case "stop":
         await button.deferUpdate();
         //if (!client.utils.canModifyQueue(queue.metadata)) return;
-        queue.stop();
-        queue.metadata.followUp({ content: "Stopped the music!", ephemeral: true })
+       // if (queue.destroyed) return console.log("Cannot go further because the queue is destroyed");
+        queue.destroy();
+        
+        const stopped = new MessageEmbed().setColor("#ee1616").setDescription("Music \`Stopped\`").setFooter(`cya`,`https://images-ext-2.discordapp.net/external/gqq_mBremfXf6kiRqU1HYo8ZRm9Wa0PI32WNuW6VWy8/https/cdn.discordapp.com/emojis/809969812984954890.gif`).setTimestamp()
+        queue.metadata.channel.send({ embeds:[stopped], ephemeral: true }).then(async(msg)=> {
+          setTimeout(() => msg.delete(), 9000)
+      })
+      
+      .catch((e) => console.log(e))
         usedStop();
         collector.stop();
         break;
@@ -177,9 +207,18 @@ const pause = new MessageEmbed()
       case "shuffle":
         await button.deferUpdate();
        // if (!client.utils.canModifyQueue(queue.metadata)) return;
-        if (queue.tracks.length < 3) return queue.metadata.followUp({ content: "Need atleast `3` songs in the queue to shuffle!", ephemeral: true})
+       const shuffle = new MessageEmbed().setColor("29cddc").setDescription("No of songs in queue are too less to shuffle").setFooter(':3',`https://cdn.discordapp.com/emojis/775531595620417536.gif?v=1`).setTimestamp()
+        if (queue.tracks.length < 3) return queue.metadata.channel.send({ embed:[shuffle], ephemeral: true}).then(async(msg)=> {
+          setTimeout(() => msg.delete(), 3000)
+      })
+      .catch()
         queue.shuffle();
-        queue.metadata.followUp({ content: "Shuffled the queue!", ephemeral: true})
+        let shufflingEmbed = new MessageEmbed().setColor("#29cddc").setDescription(`**Aye shuffling thy  queue**`).setThumbnail(`https://cdn.discordapp.com/attachments/726134541638697042/798842241145765958/Music.gif`)
+        queue.metadata.channel.send({ embeds:[shufflingEmbed]}).then (async(m) =>
+          {
+            let shuffled = new MessageEmbed().setColor("#29cddc").setDescription(`<a:analogtick:725928974877720677> **Shuffled your queue**`).setTimestamp().setFooter('ӭ',`https://cdn.discordapp.com/emojis/775531595620417536.gif?v=1`)
+           setTimeout (() => m.edit({embeds:[shuffled]}),2000 )
+          })
         break;
         
       case "volumeLess":
@@ -211,5 +250,9 @@ const pause = new MessageEmbed()
     collector.on("end", () => {
       console.log("Queue ended!")
     })
-  });
-};
+  }).catch()
+}
+
+
+
+

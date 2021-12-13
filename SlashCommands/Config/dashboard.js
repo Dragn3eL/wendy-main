@@ -35,20 +35,12 @@ module.exports = {
                 .setMaxValues(1)
                 .addOptions([
                     {
-                        label: "Antilink",
-                        description: "Enable or Disable Antilink System!",
-                        value: "antilink",
+                        label: "DJ",
+                        description: "setup dj role for use in server!",
+                        value: "dj",
                     },
-                    {
-                        label: "AutoRole",
-                        description: "Enable or Disable AutoRole System!",
-                        value: "autorole",
-                    },
-                    {
-                        label: "AutoMod",
-                        description: "Enable or Disable AutoMod System!",
-                        value: "automod",
-                    },
+                   
+                   
                     {
                         label: "Prefix",
                         description: "Change the bot's prefix for your server!",
