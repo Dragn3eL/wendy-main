@@ -10,7 +10,8 @@ module.exports = {
   aliases: ["sdj"],
   userPerms: ["MANAGE_ROLES"],
   botPerms: ["MANAGE_ROLES"],
-  ownerOnly:'true',
+  ownerOnly:true,
+  enabled:false,
 
   run: async (client, message, args) => {
    

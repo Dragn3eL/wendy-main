@@ -14,7 +14,7 @@ const activities = [
 
 ]
  let i =0;
- setInterval(() => client.user.setActivity(`updating | ${activities[i++ % activities.length]}`, {type: 'LISTENING'}),  15000)
+ setInterval(() => client.user.setActivity(`1 days to go | ${activities[i++ % activities.length]}`, {type: 'PLAYING'}),  15000)
 
 
 

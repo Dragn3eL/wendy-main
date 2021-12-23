@@ -1,7 +1,9 @@
 const prefixModel = require("../../database/guildData/prefix");
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const { DEFAULT_PREFIX, OWNER_ID } = require('../../config')
-const { Collection } = require("discord.js")
+const { Collection } = require("discord.js");
+const { description } = require("../../Commands/Config/djrole");
+const { truncateSync } = require("fs");
 module.exports = async (message, cooldowns) => {
 
   let client = message.client;
@@ -43,18 +45,31 @@ module.exports = async (message, cooldowns) => {
   if (!command) return;
     //command enaled thing
     if(command.enabled === false) {
-      return message.reply('This command is disabled!')
+      return message.reply({  embeds: [{description:'This command is disabled for now or is in beta!',color: 0xe33e4a, timestamp:new Date()
+     } ] })
     }
+
+    //voicechannel
+ if ( command.voiceChannel=== true) {
+ if (!message.member.voice.channel) return message.reply({embeds:[{description: `**You need to be in a voice channel**`, color:0xe33e4a,timestamp: new Date()}]})
+
+  if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channel) return message.reply({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
+ }
+
     // ownerOnly thing
     if(command.ownerOnly === true) {
       if(!message.author.id === OWNER_ID) {
-        return message.reply('This command is Owner only!')
+        return message.reply({  embeds: [{description:'This command is OwnerOnly command !',color: 0xe33e4a, timestamp:new Date()
+      } ] })
+        //('This command is Owner only!')
       }
     }
     // user permissions handler
   if (!message.member.permissions.has(command.userPerms || [])) {
     if(command.userPermError === null || command.userPermError === undefined) {
-      return message.reply(`You need  \`${command.userPerms}\` permissions to use this comand!`);
+      return message.reply({  embeds: [{description:`Permission Error, \`${command.userPerms}\` permissions required to use this command!`,color: 0xe33e4a, timestamp:new Date()
+    } ] })
+      //(`You need  !`);
     } else {
       return message.reply(command.userPermError)
     }
@@ -65,9 +80,9 @@ module.exports = async (message, cooldowns) => {
   // bot permissions handler
   if (!message.guild.me.permissions.has(command.botPerms || [])) {
   if(command.botPermError === null || command.botPermError === undefined) {
-    return message.reply(
-      `Ups :/  I need \`${command.botPerms}\` premission|s to run this command correctly`
-    );
+    return message.reply( {embeds:[{description:
+      `oopsie :/  I need \`${command.botPerms}\` premission|s required to execute the cmd`,color:0x33e4a,timestamp: new Date()
+    }]})
  } else {
     return message.reply(command.botPermError)
   }
@@ -76,13 +91,19 @@ module.exports = async (message, cooldowns) => {
   if(command.guildOnly === true) {
     console.log(message.channel.type)
     if(message.channel.type === 'DM' || message.channel.type === 'GROUP_DM') {
-      return message.reply('This command is Server only!')
+      return message.reply( {embeds:[{description:
+        `The command is server only :I`,color:0x33e4a,timestamp: new Date()
+      }]})
+      //('This command is Server only!')
     }
   }
     //nsfw thingy
     if(command.nsfw === true) {
       if(message.channel.nsfw === false) {
-        return message.reply('This command is NSFW only, mark the channel as nsfw for this command to work!')
+        return message.reply( {embeds:[{description:
+          `This command is NSFW only, mark the channel as nsfw for this command to work`,color:0x33e4a,timestamp: new Date()
+        }]})
+        //('!')
       }
     }
   //min args and max args thing
@@ -116,11 +137,10 @@ module.exports = async (message, cooldowns) => {
 
     if (now < expirationTime) {
       const timeLeft = (expirationTime - now) / 1000;
-      return message.reply(
-        `please wait ${timeLeft.toFixed(
-          1
-        )} more second(s) before reusing the \`${command.name}\` command.`
-      );
+      return message.reply( {embeds:[{description:
+        `Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`,color:0x33e4a,timestamp: new Date()
+      }]})
+      //(``);
     }
   }
 
@@ -131,10 +151,10 @@ module.exports = async (message, cooldowns) => {
     command.run(client, message, args, p, cooldowns);
   } catch (error) {
     console.error(error);
-    let embed2000 = new MessageEmbed()
+    let embedError = new MessageEmbed()
       .setDescription("There was an error executing that command.")
-      .setColor("BLUE");
-    message.channel.send({ embeds: [embed2000] }).catch(console.error);
+      .setColor("#33e4a");
+    message.channel.send({ embeds: [embedError] }).catch(console.error);
   }
 };
 /* 

@@ -12,6 +12,7 @@ module.exports = {
     description: "Displays info about the current song played",
     ownerOnly: false,
     nsfwOnly: false,
+    voiceChannel:true,
     run: async (client, message, args,player) => {
 
         const queue = client.player.getQueue(message.guild.id)
@@ -28,18 +29,18 @@ module.exports = {
          const trackduration= timestamp.progress == 'No End' ? 'Live 🔴' : track.duration
 
          const progresss = queue.createProgressBar()
-         const repeat = client.player.getQueue(message.guild.id).repeatMode ? `Yes`:`NO`
-            const methods = [`disabled`,`track`,`queue`]
+         const repeat = client.player.getQueue(message.guild.id).repeatMode ? `ON`:`OFF`
+            const methods = [`Disabled`,`Track`,`Queue`]
           let np = new MessageEmbed()
             .setColor('#29cddc')
             .setThumbnail(track.thumbnail)
-            .setAuthor(`Now playing in ${queue.guild.name}`,message.guild.iconURL())
+            .setAuthor(`Now playing in ~ \n${queue.guild.name}`,message.guild.iconURL())
             .setTitle(` ${track.title}`).setURL(`${track.url}`)
            
             
-            .addField(`:?|Requested by`,track.requestedBy.toString(), true)
-            .addField(`:D|Channel`,track.author,true)
-            .addField(`:-O|Info`,`Volume : \`${queue.volume}\`| Loop mode \`${repeat}| ${methods[queue.repeatMode]}\``)
+            .addField(`Requested by`,track.requestedBy.toString(), true)
+            .addField(`Channel`,track.author,true)
+            .addField(`Info`,`Volume : \`${queue.volume}\`| Loop mode \`${repeat}| ${methods[queue.repeatMode]}\``)
             .addField(`\u200b`,`${progresss}(**${trackduration}**%)`)
            
             

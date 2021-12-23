@@ -11,6 +11,6 @@ module.exports = async(queue, tracks, client) => {
    // .addField(`Duration`,`${track.duration}`,true).setTimestamp()
    
 
-   return queue.metadata.channel.send({ embeds: [embed], allowedMentions: { repliedUser: false } }).catch(console.error);
+   return queue.metadata.channel.send({ embeds: [embed], allowedMentions: { repliedUser: false } }).catch();
 
 };

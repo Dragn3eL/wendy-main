@@ -20,7 +20,7 @@ module.exports = async( queue,track,client,message, args,) => {
       .setColor("#29cddc")
       .setAuthor(`Playing 🎸 `,`https://cdn.discordapp.com/attachments/726134541638697042/798842241145765958/Music.gif`)
       .setTimestamp()
-      .setDescription(`[${track.title}](${track.url})~ ${track.requestedBy.toString()}`)
+      .setDescription(`[${track.title}](${track.url})  **[**${track.requestedBy.toString()}**]**`)
       .addFields(
 	    { name: 'Views', value: `\`${track.views}\``,inline:true },
 	   	{ name: 'Duration', value: `\`${track.duration}\`` , inline: true },
@@ -152,14 +152,15 @@ const pause = new MessageEmbed()
         await button.deferUpdate();
         //if (!client.utils.canModifyQueue(queue.metadata)) return;
 
-        if (queue.tracks.length < 3 && queue.repeatMode !== 3) {
-          const nosongs = new MessageEmbed().setColor("#ee1616").setDescription(`Currently no more songs in the queue :(`).setTimestamp().setFooter(`ت`,`https://cdn.discordapp.com/attachments/726134541638697042/799268980963541012/ezgif.com-gif-maker_17.gif`)
+        if (queue.tracks.length < 2 && queue.repeatMode !== 2) {
+          const nosongs = new MessageEmbed().setColor("#ee1616").setDescription(`Currently no of songs in the queue are less to skip :(`).setTimestamp().setFooter(`ت`,`https://cdn.discordapp.com/attachments/726134541638697042/799268980963541012/ezgif.com-gif-maker_17.gif`)
           return queue.metadata.channel.send({ embeds:[nosongs], ephemeral: true }).then(async(msg)=> {
             setTimeout(() => msg.delete(), 3000)
         })
-        .catch()
+      
         } else {
           queue.skip();
+          usedStop();
           const skip = new MessageEmbed().setColor("#29cddc").setDescription(`Skipping current music`).setFooter(`㋡`,`https://cdn.discordapp.com/attachments/726134541638697042/799268980963541012/ezgif.com-gif-maker_17.gif`).setTimestamp()
           queue.metadata.channel.send({ embeds:[skip], ephemeral: true }).then(async(msg)=> {
             setTimeout(() => msg.delete(), 3000)
@@ -191,15 +192,17 @@ const pause = new MessageEmbed()
       case "stop":
         await button.deferUpdate();
         //if (!client.utils.canModifyQueue(queue.metadata)) return;
+       
        // if (queue.destroyed) return console.log("Cannot go further because the queue is destroyed");
-        queue.destroy();
+       queue.stop(true);
         
         const stopped = new MessageEmbed().setColor("#ee1616").setDescription("Music \`Stopped\`").setFooter(`cya`,`https://images-ext-2.discordapp.net/external/gqq_mBremfXf6kiRqU1HYo8ZRm9Wa0PI32WNuW6VWy8/https/cdn.discordapp.com/emojis/809969812984954890.gif`).setTimestamp()
         queue.metadata.channel.send({ embeds:[stopped], ephemeral: true }).then(async(msg)=> {
           setTimeout(() => msg.delete(), 9000)
       })
       
-      .catch((e) => console.log(e))
+      .catch()
+      
         usedStop();
         collector.stop();
         break;

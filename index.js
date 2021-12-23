@@ -53,18 +53,39 @@ client.player = new Player(client, {
   leaveOnStop: false,
   leaveOnEmpty: false,
   leaveOnEmptyCooldown: 60000,
+  bufferingTimeout: 1000,
   autoSelfDeaf: true,
-  initialVolume: 130,
+  disableVolume: false,
+  //initialVolume: 90,
   ytdlOptions: {
-
-    
     requestOptions: {
       headers: {
-        cookie: Cookie,
+        cookie: Cookie
       }
     }
   },
 })
+
+/*
+VISITOR_INFO1_LIVE=2lRAk2b1NPM;
+ PREF=tz=Asia.Kolkata&f6=40000000; 
+ NID=511=GHXgHwbbjWmjKsNZ2hPfXsHqTXKq-MX08BTzYqx2Ymfio58T3C8HWyA1HfO4myaIancDIe4eKxylq6VhEKUp02Hn94l_sb_jepfIIESPTIaEN_zRG_95j2GEMZsJ75EBMye7v65s8cAD4tNDPCT95GopJ3zd17ojshc8FT5JI24;
+  __Secure-3PSID=EwhmCQmsWO5niFK3WzZh7B-o3lC4wTO94gUdvf2pB2QfECP6jzmDPeSQSJJ1p5ZhxsECZw.;
+   __Secure-3PAPISID=TqvHSnPJxKo5oEdA/ASozHUe6j7bV7Xv02; 
+   __Secure-3PSIDCC=AJi4QfG6SXCYNCd9fvFVaEGoGSavgOVmlozypxvZ0p467_mgs3vKIIshDYzbet9KPrch09UR1qs; wide=0; 
+   GPS=1; YSC=A8mBHnZ3mx…c; SAPISID=TqvHSnPJxKo5oEdA/ASozHUe6j7bV7Xv02; __Secure-1PAPISID=TqvHSnPJxKo5oEdA/ASozHUe6j7bV7Xv02;
+    LOGIN_INFO=AFmmF2swRQIgEJX56mt-I9ZIvd5Q9CrxaXQgl1mmo9XSOEz-r5mg4akCIQDpH8kuaAu63wfUDXR6lx8KMYZS1PmA0Rt2-03MfYLI_Q:QUQ3MjNmdzZqNWpyWjlSNkNnU21xbUROVnFsS1hFVXdFUTVWSjFrY25JN1YxTEN3c3M1ZkgxZ3ZOODZ1LWNIYmFtaU82eGVoQUNWbkZLZnBkZG5YWDlhNEhuWXhmTEpOemxwOGVfalNsSXVPcFRMOHA5YnRXSC1VM2pXQ1plS0NkdE5pWXlZaE1rcTlma2dpT2FKY0lxdVpROS1TM3I5YnlB; SIDCC=AJi4QfGRPiI5Q53rp1S_rK47jJYSpcXBaRO5jIaYnSVDGJONNjAmD5dkSIgUkSGbrtoAvoTp
+
+
+
+*/
+
+
+
+
+
+
+
 
 client.player.use("YOUTUBE_DL", require("@discord-player/downloader").Downloader);
 client.db = new Enmap({ name: "musicdb" });
