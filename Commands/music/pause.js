@@ -10,6 +10,7 @@ module.exports = {
     usage: "pause",
     description: "Pause a playing song!",
     ownerOnly: false,
+  //  voiceChannel:true,
     nsfwOnly: false,
     run: async (client, message, args,player) => {
     

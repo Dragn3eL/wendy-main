@@ -5,10 +5,11 @@ const { QueueRepeatMode } = require('discord-player');
 
 module.exports = {
     name: "loop",
-    aliases: ["lp"],
+    aliases: ["lp","repeat"],
     category: "Music",
-    usage:`${DEFAULT_PREFIX}loop <off|track|queue|autoplay>`,
+    usage:`${DEFAULT_PREFIX}loop || repeat <off|track|queue|auto>`,
     description: "Loop the Bot playing Track/Queue",
+    //voiceChannel:true,
     
     run: async (client, message, args,player) => {
 
