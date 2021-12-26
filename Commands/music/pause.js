@@ -44,7 +44,7 @@ module.exports = {
      }
 
      const success = queue.setPaused(true)
- let sucess = new MessageEmbed().setColor("##d33443").setDescription(`Song ${queue.current.title} \`PAUSED\``).setTimestamp().setFooter(`Paused by ${message.author.tag}`,message.author.displayAvatarURL())
+ let sucess = new MessageEmbed().setColor("#d33443").setDescription(`Song ${queue.current.title} \`PAUSED\``).setTimestamp().setFooter(`Paused by ${message.author.tag}`,message.author.displayAvatarURL())
   if (success) message.channel.send({embeds: [sucess]}).then(async(msg) =>{
       setTimeout(() => {
           msg.delete()
