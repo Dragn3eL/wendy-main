@@ -44,7 +44,7 @@ module.exports = {
         }
 
         // returns the current volume, instructions for adjusting the volume if theres no args
-        const vol = parseInt(args[1]);
+        const vol = parseInt(args[0]);
         if (!vol) {
             const embed = new MessageEmbed();
             embed.setColor('#29cddc')

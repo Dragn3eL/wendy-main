@@ -26,7 +26,7 @@ module.exports = {
       new MessageButton()
       .setLabel("vote")
       .setStyle("LINK")
-      .setURL("https://wendy.com")
+      .setURL("https://top.gg/bot/724135554966355968/vote")
       .setEmoji('🌐')
       .setDisabled()
 

@@ -17,8 +17,7 @@ module.exports = {
       let voiceChannel = message.member.voice.channel;
       if (!voiceChannel) return message.reply({embeds:[{description: `**Join in a voice channel first where i have access <3**`, color:0xe33e4a,timestamp: new Date()}]});
 
-      let voiceChannel = message.member.voice.channel;
-      if (!voiceChannel) return message.reply({embeds:[{description: `**Join in a voice channel first **`, color:0xe33e4a,timestamp: new Date()}]});
+     
 
 
 
