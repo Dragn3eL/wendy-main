@@ -1,6 +1,6 @@
 {
   "name": "wendy",
-  "version": "v0.01-Beta",
+  "version": "v0.09-Beta",
   "description": "a learning project in discord",
   "main": "index.js",
   "engines": {
