@@ -15,8 +15,20 @@ module.exports = {
   //  voiceChannel:true,
     run: async (client, message, args,player) => {
       let voiceChannel = message.member.voice.channel;
-      if (!voiceChannel) return message.reply({embeds:[{description: `**Join in a voice channel where i have access <3**`, color:0xe33e4a,timestamp: new Date()}]});
+      if (!voiceChannel) return message.reply({embeds:[{description: `**Join in a voice channel first where i have access <3**`, color:0xe33e4a,timestamp: new Date()}]});
 
+      let voiceChannel = message.member.voice.channel;
+      if (!voiceChannel) return message.reply({embeds:[{description: `**Join in a voice channel first **`, color:0xe33e4a,timestamp: new Date()}]});
+
+
+
+      const gqueue = client.player.getQueue(message.guild.id);
+
+      const channel = message.member?.voice?.channel;
+
+      if (gqueue && channel.id !== message.guild.me.voice.channel.id)
+      return message.reply({embeds:[{description: `**I am already playing somewhere in the server |disconnect me from there to play**`, color:0xe33e4a,timestamp: new Date()}]});
+    
       if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.reply({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
   
       let search_Song = args.join(" ");
@@ -56,7 +68,8 @@ module.exports = {
         })
         song.playlist ? queue.addTracks(song.tracks) : queue.addTrack(song.tracks[0]);
   
-      if (!song || !song.tracks.length) return message.reply(` I cant Find \`${search_Song}\` `);
+      if (!song || !song.tracks.length) return message.reply({embeds:[{description: ` I cant find anything for \`${search_Song}\``, color:0xe33e4a,timestamp: new Date()}]})
+
   
       if (!queue.playing) await queue.play();
   

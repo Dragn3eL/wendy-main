@@ -13,6 +13,19 @@ module.exports = {
   //  voiceChannel:true,
     nsfwOnly: false,
     run: async (client, message, args,player) => {
+        let voiceChannel = message.member.voice.channel;
+        if (!voiceChannel) return message.reply({embeds:[{description: `**Join in a voice channel first **`, color:0xe33e4a,timestamp: new Date()}]});
+  
+  
+  
+        const gqueue = client.player.getQueue(message.guild.id);
+  
+        const channel = message.member?.voice?.channel;
+  
+        if (gqueue && channel.id !== message.guild.me.voice.channel.id)
+        return message.reply({embeds:[{description: `**I am already playing somewhere in the server |disconnect me from there to play**`, color:0xe33e4a,timestamp: new Date()}]});
+      
+        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.reply({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
     
     const queue = client.player.getQueue(message.guild.id)
     let noqueue = new MessageEmbed().setColor("#29cddc").setDescription(`Currently not playing anything  in guild`).setTimestamp()

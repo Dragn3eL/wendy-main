@@ -16,7 +16,7 @@ function baseEmbed(interaction) {
 
   return new MessageEmbed()
     .setFooter(tag, avatar)
-    .setColor(interaction.guild.me.displayColor || "#00FFFF")
+    .setColor(interaction.guild.me.displayColor || "#98dde4")
     .setTimestamp();
 }
 
@@ -28,9 +28,13 @@ function rootEmbed(interaction) {
   if (!interaction) {
     throw Error("'interaction' must be passed down as param! (baseEmbed)");
   }
+  const avatar = interaction.user?.displayAvatarURL({ dynamic: true });
+  const tag = interaction.user?.tag;
 
   return new MessageEmbed()
-    .setColor(interaction.guild.me.displayColor || "#00FFFF");
+    .setColor(interaction.guild.me.displayColor || "#98dde4")
+    .setFooter(tag,avatar)
+    .setTimestamp()
 }
 
 
@@ -50,7 +54,7 @@ function infoMessage(interaction, text) {
 
   const embedI = new MessageEmbed()
     .setDescription(text)
-    .setColor(interaction.guild.me.displayColor || "#00FFFF");
+    .setColor(interaction.guild.me.displayColor || "#98dde4");
 
   return interaction.editReply({ embeds: [embedI], allowedMentions: { repliedUser: false } }).catch(console.error);
 }
@@ -71,7 +75,8 @@ function warnMessage(interaction, text) {
 
   const embedW = new MessageEmbed()
     .setDescription(text)
-    .setColor("ORANGE");
+    .setColor("#fb8e0e")
+    .setTimestamp()
 
   return interaction.editReply({ ephemeral: true, embeds: [embedW], allowedMentions: { repliedUser: false } }).catch(console.error);
 }
@@ -92,7 +97,8 @@ function errorMessage(interaction, text) {
 
   const embedE = new MessageEmbed()
     .setDescription(text)
-    .setColor("RED");
+    .setColor("RED")
+    .setTimestamp()
 
   return interaction.editReply({ ephemeral: true, embeds: [embedE], allowedMentions: { repliedUser: false } }).catch(console.error);
 }
@@ -125,7 +131,8 @@ function queueMessage(client, queue, text, color) {
 
   const embedQ = new MessageEmbed()
     .setDescription(text)
-    .setColor(colour);
+    .setColor(colour)
+    .setTimestamp()
 
   return queue.metadata.channel.send({ embeds: [embedQ] });
 }

@@ -6,6 +6,7 @@ module.exports = {
   description: "Get the bot's",
   botPerms: ["EMBED_LINKS"],
   aliases:[`support`],
+  usage:"w!<invite/support>\n <> optional",
   run: async (client, message, args) => {
 
 
@@ -23,7 +24,7 @@ module.exports = {
       .setURL(`https://discord.gg/6yRpW7e3dS`)
       .setEmoji('🏠'),
       new MessageButton()
-      .setLabel("Website")
+      .setLabel("vote")
       .setStyle("LINK")
       .setURL("https://wendy.com")
       .setEmoji('🌐')

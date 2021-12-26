@@ -12,11 +12,26 @@ module.exports = {
     description: "search a song as query!",
     ownerOnly: false,
     nsfwOnly: false,
+    enabled:false,
   //  voiceChannel:true,
     botPerms: ["SEND_MESSAGES","EMBED_LINKS", "MANAGE_MESSAGES"],
     run: async (client, message, args) => {
+        let voiceChannel = message.member.voice.channel;
+        if (!voiceChannel) return message.reply({embeds:[{description: `**Join in a voice channel first **`, color:0xe33e4a,timestamp: new Date()}]});
+  
+  
+  
+        const gqueue = client.player.getQueue(message.guild.id);
+  
+        const channel = message.member?.voice?.channel;
+  
+        if (gqueue && channel.id !== message.guild.me.voice.channel.id)
+        return message.reply({embeds:[{description: `**I am already playing somewhere in the server |disconnect me from there to play**`, color:0xe33e4a,timestamp: new Date()}]});
+      
+        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.reply({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
 
-        if (!args[0]) return message.channel.send(`Please enter a valid search ${message.author}... try again ? ❌`);
+        if (!args[0]) return message.channel.send({embeds:[{description: `** ❌ Please enter a valid search... **`, color:0xe33e4a,timestamp: new Date()}]})
+        //(`Please enter a valid search ${message.author}... try again ? ❌`);
 
         const res = await client.player.search(args.join(' '), {
             requestedBy: message.member,

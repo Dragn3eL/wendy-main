@@ -15,7 +15,7 @@ module.exports = {
         },
         {
             name: "play",
-            description: "Plays a song",
+            description: "Plays a song with a url or title",
             type: "SUB_COMMAND",
             options: [
                 {
@@ -31,11 +31,11 @@ module.exports = {
             description: "Pauses the current song",
             type: "SUB_COMMAND"
         },
-        {
-            name: "previoustrack",
-            description: "play the previous track again!",
-            type: "SUB_COMMAND"
-        },
+        // {
+        //     name: "previoustrack",
+        //     description: "play the previous track again!",
+        //     type: "SUB_COMMAND"
+        // },
         {
             name: "info",
             description: "Get info for the current or a specific song in the queue!",
@@ -49,19 +49,19 @@ module.exports = {
                 }
             ]
         },
-        {
-            name: "jump",
-            description: "Jump to a specific song in the queue!",
-            type: 'SUB_COMMAND',
-            options: [
-                {
-                    name: "index",
-                    description: "Provide the index number of the song!",
-                    type: "NUMBER",
-                    required: true,
-                }
-            ]
-        },
+        // {
+        //     name: "jump",
+        //     description: "Jump to a specific song in the queue!",
+        //     type: 'SUB_COMMAND',
+        //     options: [
+        //         {
+        //             name: "index",
+        //             description: "Provide the index number of the song!",
+        //             type: "NUMBER",
+        //             required: true,
+        //         }
+        //     ]
+        // },
         {
             name: "lyrics",
             description: "Get the lyrics for a song!",
@@ -106,30 +106,26 @@ module.exports = {
                 }
             ]
         },
-        {
-            name: "mute",
-            description: "Mutes the volume!",
-            type: "SUB_COMMAND",
-        },
-        {
-            name: "move",
-            description: "Change the position of songs in the queue!",
-            type: "SUB_COMMAND",
-            options: [
-                {
-                    name: "from",
-                    description: "The position to move the song from!",
-                    type: "NUMBER",
-                    required: true
-                },
-                {
-                    name: "to",
-                    description: "The position to move the song to!",
-                    type: 'NUMBER',
-                    required: true
-                }
-            ]
-        },
+        
+        // {
+        //     name: "move",
+        //     description: "Change the position of songs in the queue!",
+        //     type: "SUB_COMMAND",
+        //     options: [
+        //         {
+        //             name: "from",
+        //             description: "The position to move the song from!",
+        //             type: "NUMBER",
+        //             required: true
+        //         },
+        //         {
+        //             name: "to",
+        //             description: "The position to move the song to!",
+        //             type: 'NUMBER',
+        //             required: true
+        //         }
+        //     ]
+        // },
         {
             name: "queue",
             description: "Shows the music queue for your server!",
@@ -163,12 +159,12 @@ module.exports = {
         },
         {
             name: "seek",
-            description: "Seek toa  specific postion of the current song!",
+            description: "Seek to a  specific postion in the current song!",
             type: "SUB_COMMAND",
             options: [
                 {
                     name: "duration",
-                    description: "The duration of the song <mm:ss>",
+                    description: "The duration of the song <10s/2m>",
                     type: 'STRING',
                     required: true,
                 }
@@ -176,7 +172,7 @@ module.exports = {
         },
         {
             name: "shuffle",
-            description: "Shuffle the queue!",
+            description: "Shuffles the queue!",
             type: "SUB_COMMAND"
         },
         {
@@ -202,11 +198,7 @@ module.exports = {
                 }
             ]
         },
-        {
-            name: "unmute",
-            description: "UInmutes the volume!",
-            type: "SUB_COMMAND"
-        }
+        
     ],
     userPerms: ["CONNECT", "VIEW_CHANNEL"],
     noUserPermsMessage: `You need the \`Connect\` and \`View Channel\` permissions to use these commands!`,
@@ -219,7 +211,7 @@ module.exports = {
             const queue = client.player.getQueue(interaction.guild.id);
 
         if (!queue || !queue.playing)
-             return client.say.errorMessage(interaction, "I’m currently not playing in this guild.");
+             return client.say.errorMessage(interaction, "**There is no song playing in server, add some !**");
 
         if (!client.utils.canModifyQueue(interaction)) return;
 
@@ -228,10 +220,10 @@ module.exports = {
 
         queue.clear();
 
-        return client.say.infoMessage(interaction, "Cleared the queue.");
+        return client.say.infoMessage(interaction, "☑️ Your queue has been cleared ");
         } else if (interaction.options.getSubcommand() === "play") {
             if (!client.utils.havePermissions(interaction))
-      return client.say.errorMessage(interaction, "I need **\`EMBED_LINKS\`** permission.");
+      return client.say.errorMessage(interaction, "I need **\`EMBED_LINKS\`** permission| :(");
 
     const string = await interaction.options.getString("song", true);
 
@@ -240,15 +232,15 @@ module.exports = {
     const channel = interaction.member?.voice?.channel;
 
     if (!channel)
-      return client.say.warnMessage(interaction, "You have to join a voice channel first.");
+      return client.say.warnMessage(interaction, "Join in a voice channel first where i have access <3");
 
     if (guildQueue && channel.id !== interaction.guild.me.voice.channelId)
       return client.say.warnMessage(interaction, "I'm already playing in a different voice channel!");
 
     if (!channel?.viewable)
-      return client.say.warnMessage(interaction, "I need **\`VIEW_CHANNEL\`** permission.");
+      return client.say.warnMessage(interaction, "I need my **\`VIEW_CHANNEL\`** permission.");
     if (!channel?.joinable)
-      return client.say.warnMessage(interaction, "I need **\`CONNECT_CHANNEL\`** permission.");
+      return client.say.warnMessage(interaction, "I need my **\`CONNECT_CHANNEL\`** permission.");
     /**if (!channel?.speakable)
       return client.say.warnMessage(interaction, "I need **\`SPEAK\`** permission.");
     if (channel?.full)
@@ -470,34 +462,35 @@ module.exports = {
         queue.mute();
         return client.say.infoMessage(interaction, "Muted the playback.");
 
-        } else if (interaction.options.getSubcommand() === "move") {
+         } //else if (interaction.options.getSubcommand() === "move") {
 
-            const fr = await interaction.options.getNumber("from", true);
-    let to = await interaction.options.getNumber("to") ?? 1;
-    to = to - 1;
+    //         const fr = await interaction.options.getNumber("from", true);
+    // let to = await interaction.options.getNumber("to") ?? 1;
+    // to = to - 1;
 
-    const queue = client.player.getQueue(interaction.guild.id);
+    // const queue = client.player.getQueue(interaction.guild.id);
 
-    if (!queue || !queue.playing)
-      return client.say.errorMessage(interaction, "I’m currently not playing in this guild.");
+    // if (!queue || !queue.playing)
+    //   return client.say.errorMessage(interaction, "I’m currently not playing in this guild.");
 
-    if (!client.utils.canModifyQueue(interaction)) return;
+    // if (!client.utils.canModifyQueue(interaction)) return;
 
-    if (queue.tracks.length < 3)
-      return client.say.warnMessage(interaction, "Need at least \`3\` songs in the queue to use this command.");
+    // if (queue.tracks.length < 3)
+    //   return client.say.warnMessage(interaction, "Need at least \`3\` songs in the queue to use this command.");
 
-    if (!fr || !to || fr < 0 || to < 0 || fr > queue.tracks.length || !queue.tracks[fr] || to > queue.tracks.length || !queue.tracks[to])
-      return client.say.warnMessage(interaction, "Provided Song Index does not exist.");
+    // if (!fr || !to || fr < 0 || to < 0 || fr > queue.tracks.length || !queue.tracks[fr] || to > queue.tracks.length || !queue.tracks[to])
+    //   return client.say.warnMessage(interaction, "Provided Song Index does not exist.");
 
-    if (fr === to)
-      return client.say.warnMessage(interaction, "The song is already in this position.");
+    // if (fr === to)
+    //   return client.say.warnMessage(interaction, "The song is already in this position.");
 
-    const song = queue.tracks[fr];
-    queue.splice(fr, 1);
-    queue.splice(to, 0, song);
+    // const song = queue.tracks[fr];
+    // queue.splice(fr, 1);
+    // queue.splice(to, 0, song);
 
-    return client.say.infoMessage(interaction, `**[${song.title}](${song.url})** has been moved to the **position ${to}** in the queue.`);
-        } else if (interaction.options.getSubcommand() === "queue") {
+    // return client.say.infoMessage(interaction, `**[${song.title}](${song.url})** has been moved to the **position ${to}** in the queue.`);
+    //     } 
+    else if (interaction.options.getSubcommand() === "queue") {
             let page = interaction.options.getNumber("page", false) ?? 1;
 
     const queue = client.player.getQueue(interaction.guild.id);
