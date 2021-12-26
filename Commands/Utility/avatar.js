@@ -13,15 +13,23 @@ module.exports = {
       .setColor("RANDOM")
       .setAuthor(`${user.username}'s Avatar`,client.user.displayAvatarURL())
       .setDescription(
-        `[Avatar Link](${user.displayAvatarURL({
-          size: 2048,
+        `[Avatar.png](${user.displayAvatarURL({
+          size: 1024,
           dynamic: true,
           format: "png",
+        })}) | [Avatar.jpg](${user.displayAvatarURL({
+          size: 1024,
+          dynamic: true,
+          format: "jpg",
+        })}) | [Avatar.gif](${user.displayAvatarURL({
+          size: 1024,
+          dynamic: true,
+          format: "gif",
         })})`
       )
       .setFooter(`Nice pic | UwU`)
       .setTimestamp()
-      .setImage(user.avatarURL({ size: 2048, dynamic: true, format: "png" }));
+      .setImage(user.avatarURL({ size: 1024, dynamic: true, format: "png" }));
      
 
     message.channel.send({ embeds: [embed] });

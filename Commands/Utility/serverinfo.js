@@ -12,7 +12,7 @@ module.exports = {
     const mention = message.member;
     const afk =
       message.guild.afkChannel === null ? "`None`" : message.guild.afkChannel;
-    let servericon = message.guild.iconURL;
+    let servericon = message.guild.iconURL();
     let verifLevels = {
       NONE: "None",
       LOW: "Low",

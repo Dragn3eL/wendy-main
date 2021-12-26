@@ -3,7 +3,7 @@ const moment = require("moment");
 
 module.exports = {
     name: "userinfo",
-    description: "Get info about your account or mentiobned user's account!",
+    description: "Get info about your discord details or of  mentioned user's!",
     aliases: ["ui"],
     run: async (client, message, args) => {
         const permissions = {
@@ -45,16 +45,17 @@ module.exports = {
             "EARLY_VERIFIED_DEVELOPER": "Early Verified Bot Developer"
         };
         var bot = {
-            "true": "Yes, The User is a Bot",
-            "false": "No, The User is a Human"
+            "true": "Yes, Bot liek me",
+            "false": "No, a Human mhmm"
         };
         const userlol = new Discord.MessageEmbed()
-        .setAuthor(`User Info`, mention.user.avatarURL())
+        .setAuthor(`${mention.user.username}'s Info`, mention.user.avatarURL())
         .setThumbnail(usericon)
-        .addField(`General Info`, `Name: \`${mention.user.username}\` \nTag: \`${mention.user.discriminator}\` \nNickname: \`${nick}\``)
-        .addField(`Overview`, `Badges: \`${flags[mention.user.flags.toArray().join(", ")]}\`\nIs Bot: \`${bot[mention.user.bot]}\``)
-        .addField(`Server Relating Info`, `Roles: <@&${mention._roles.join(">  <@&")}> \nKey Permissions: \`${finalPermissions.join(', ')}\``)
-        .addField(`Misc Info`, `Acc Created on: \n\`${moment(mention.user.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\` \nJoined This Server on: \n\`${moment(mention.joinedAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\``)
+        .addField(`General Info`, ` ${mention.user.toString()} \n Username: \`${mention.user.tag}\` \nNickname: \`${nick}\``,true)
+        .addField(`Overview`, `Badges: \`${flags[mention.user.flags.toArray().join(", ")]}\`\nIs Bot: \`${bot[mention.user.bot]}\``,true)
+        .addField(`Server Relating Info`, `\n**Roles:**  <@&${mention._roles.join(">  <@&")}> \n\n**Key Permissions:** \`${finalPermissions.join(', ')}\``)
+        .addField( `Acc Created on:`,` \`${moment(mention.user.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\``,true)
+        .addField(`Joined Server on:`, `\`${moment(mention.joinedAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\``,true)
         .setThumbnail(mention.user.avatarURL())
         .setFooter(`ID: ${mention.user.id}`, mention.user.avatarURL())
         .setTimestamp()

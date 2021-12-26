@@ -36,7 +36,7 @@ module.exports = {
             `Requested by ${message.author.username}#${message.author.discriminator}`,
             message.author.displayAvatarURL
           )
-          .addField("<:statistics:839431481327353916> System Stats", `\`\`\`yml\nMemory usage : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(
+          .addField("<:statistics:924132996683018310> System ", `\`\`\`yml\nMemory usage : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}/${(
             os.totalmem() /
             1024 /
             1024
@@ -54,13 +54,13 @@ module.exports = {
           // )
           //.addField(":computer: System", `\`${os.arch()}\``, true)
          // .addField(":desktop: Platform", `\`\`${os.platform()}\`\``, true)
-         .addField(`<:stats:745360693166866544> Bot Stats`, `\`\`\`yml\nUsers : ${client.users.cache.size} \nHomes : ${client.guilds.cache.size}\nChannels : ${client.channels.cache.size}\`\`\``,true)
+         .addField(`<:stats:924134004624597003> Bot `, `\`\`\`yml\nUsers : ${client.users.cache.size} \nHomes : ${client.guilds.cache.size}\nChannels : ${client.channels.cache.size}\`\`\``,true)
           
       //    .addField("Commands Count", "``11``", true)
          .addField("<:bookshelf:908966883070447646> Library", `\`\`\`yml\nLibrary: ${js} \nNode.js: ${process.version}\nDiscord.js: v${version}\`\`\``, true)
         
           
-          .addField(" me ", `\`\`\`yml\nBorn in: ${client.user.createdAt} \nPing: ${Math.round(client.ws.ping)}\nUptime: ${duration}\`\`\``, true)
+          .addField("<:wendy:924135346583797850> me ", `\`\`\`yml\nBorn in: ${client.user.createdAt} \nPing: ${Math.round(client.ws.ping)}\nUptime: ${duration}\`\`\``, true)
           
         message.channel.send({ embeds: [RynEmb] });
       });

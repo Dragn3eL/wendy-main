@@ -8,9 +8,7 @@ module.exports = {
   botPerms: ["EMBED_LINKS"],
   run: async (client, message, args) => {
     //Eval Command(Not to be made public btw!)
-    if (message.author.id != OWNER_ID) {
-      return message.channel.send("Limited to the bot owner only!");
-    }
+    if (message.author.id != OWNER_ID) return  
     try {
       const code = args.join(" ");
       if (!code) {

@@ -14,14 +14,25 @@ module.exports = {
     aliases: ["cq"],
     // ownerOnly:true,
     // enabled:false,
-    voiceChannel:true,
+    //voiceChannel:false,
    
    run :async (client,message, args) => {
-    // if (!message.member.voice.channel) return ({embeds:[{description: `**You need to be in a voice channel**`, color:0xe33e4a,timestamp: new Date()}]})
+   
+    let voiceChannel = message.member.voice.channel;
+      if (!voiceChannel) return message.reply({embeds:[{description: `**Join in a voice channel first **`, color:0xe33e4a,timestamp: new Date()}]});
 
-    // if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channel) return message.channel.send({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
 
-    const queue= client.player.getQueue(message.guild.id)
+      
+      const queue = client.player.getQueue(message.guild.id);
+
+      const channel = message.member?.voice?.channel;
+
+      if (queue && channel.id !== message.guild.me.voice.channel.id)
+      return message.reply({embeds:[{description: `**I am already playing somewhere in the server |disconnect me from there to play**`, color:0xe33e4a,timestamp: new Date()}]});
+      
+      if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.reply({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
+
+    
 
     if (!queue || !queue.playing) return message.reply({ embeds: [{description:`**There is no song playing in server, add some !**`, color: 0x29cddc ,timestamp:new Date(),footer:{
         text: `UwU`,

@@ -6,7 +6,7 @@ module.exports = {
   userPerms: ["MANAGE_SERVER"],
   run: async (client, message, args) => {
     const pll = args.join(" ");
-    if (!message.member.hasPermission("MANAGE_SERVER")) {
+    if (!message.member.permissions.has("MANAGE_SERVER")) {
       return message.channel.send("You don't have enough Permissions");
     }
     if (!pll) {
@@ -16,7 +16,9 @@ module.exports = {
       .setTitle("Poll Time")
       .setDescription(`${pll}`)
       .setFooter(`Started by ${message.author.username}`)
+      .setTimestamp()
       .setColor("RANDOM");
+     
     message.channel
       .send({ embeds: [embed] })
       .then(function (message, str) {

@@ -2,21 +2,22 @@ const Discord = require("discord.js");
 const malScraper = require('mal-scraper');
 
 module.exports = {
-  name: "animesearch",
+  name: "anime",
   category: "utility",
-description: "Get info about an anime",
-usage: "[command | Anime]",
+  description: "Get info about an anime",
+  usage: "w!anime <animename>",
+  aliases:["animesearch"],
 run: async (client, message, args) => {
         const search = `${args}`;
         if(!search)
-        return message.reply('Please add a search query if invalid command will not work.');
+        return message.reply('Enter a valid search query [if invalid no results would come.]');
 
         malScraper.getInfoFromName(search)
           .then((data) => {
           const malEmbed = new Discord.MessageEmbed()
-            .setAuthor(`My Anime List search result for ${args}`.split(',').join(' '))
+            .setAuthor(`Looked for ${args} in the vast Anime world`.split(',').join(' '))
             .setThumbnail(data.picture)
-            .setColor('#ffc1cc') //I personally use bubblegum pink!
+            .setColor('#bb34ff') //I personally use bubblegum pink!
             .addField('English Title', data.englishTitle, true)
             .addField('Japanese Title', data.japaneseTitle, true)
             .addField('Type', data.type, true)

@@ -1,9 +1,10 @@
 const Discord = module.require("discord.js");
 
 module.exports = {
-  name: "wiki",
+  name: "wikipedia",
   description: "Get Search Results from Wikipedia",
   botPerms: ["EMBED_LINKS"],
+  aliases:["wiki"],
   run: async (client, message, args) => {
     const search = args.join("_");
     const msg = args.join(" ");

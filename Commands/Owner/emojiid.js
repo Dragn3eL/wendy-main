@@ -8,7 +8,7 @@ module.exports = {
 
 
     if (message.author.id != OWNER_ID) {
-      return message.channel.send("Limited to the bot owner only!");
+      return 
     }try {
   const name = args.join(" ");
     const emoji = message.guild.emojis.cache.find((r) => r.name === name);

@@ -11,11 +11,13 @@ module.exports = async(interaction, client) => {
             await interaction.deferUpdate()
 
             const settingsEmbed = new Discord.MessageEmbed()
-        .setTitle("Config Commands")
+        .setTitle("Some Config Commands")
         .setDescription(
-          " use w!dashboard <admin> for all admin setup cmds"
+          " use \`w!dashboard <admin>\` for all admin setup cmds"
         )
-        .setColor("RANDOM");
+        .setColor("#147bd3")
+        .setTimestamp()
+
 
       await msg.edit({ embeds: [settingsEmbed] });
 
@@ -24,9 +26,11 @@ module.exports = async(interaction, client) => {
          await interaction.deferUpdate();
  
          const musicEmbed = new Discord.MessageEmbed()
-         .setTitle(`Music Commands`)
-         .setDescription("`clearqueue`, `filter`, `filter list`, `info`, `jump`, `loop`, `lyrics`, `move`, `mute`, `pause`, `play`, `previoustrack`, `queue`, `remove`, `resume`, `unmute`, `volume`, `youtube`\n\n```Note: Music commands work only with slash commands!\nBe sure to use music before each command!```")
+         .setTitle(`My Music Commands`)
+         .setDescription("`clearqueue`| `filter`| `filter list`| `loop`| `lyrics`|`jump`| `nowplaying`| `pause`| `play`| `queue`| `remove`| `resume`|  `volume`|`save`| `search`| `seek` | `stop` ")
          .setColor("#29cddc")
+         .setFooter(`You can use w!help <command_name> for more info`,client.user.displayAvatarURL())
+         .setTimestamp()
  
          await msg.edit({ embeds: [musicEmbed] })
 
@@ -35,11 +39,13 @@ module.exports = async(interaction, client) => {
             await interaction.deferUpdate()
 
             const infoEmbed = new Discord.MessageEmbed()
-        .setTitle("Info Commands")
+        .setTitle("Little Info Commands")
         .setDescription(
-          "`botinfo`, `devteam`, `emojiid`, `help`, `invite`, `ping`, `policy`, `report`, `userinfo`, `userid`, `serverinfo`, `suggest`"
+          "`botinfo`| `help`| `invite`|`support` | `ping`|  `report`| `userinfo`|  `serverinfo`| `suggest`"
         )
-        .setColor("#9bff00");
+        .setColor("#bb34ff")
+        .setFooter(`You can use w!help <command_name> for more info`,client.user.displayAvatarURL())
+        .setTimestamp()
 
         await msg.edit({ embeds: [infoEmbed] })
 
@@ -49,9 +55,11 @@ module.exports = async(interaction, client) => {
             const utilityEmbed = new Discord.MessageEmbed()
         .setTitle("Utility Commands")
         .setDescription(
-          "`avatar`, `animesearch`, `announce`, `calculator`, `clear`, `createrole`, `delchannel`, `delrole`, `enlargemoji`, `esay`, `giverole`, `google`, `imdb`, `lock`, `newtext`, `newvoice`, `nickname`, `poll`, `removerole`, `say`, `servericon`, `serverinfo`, `suggestion`, `translate`, `unlock`, `weather`, `wiki`, `youtube`"
+          "`avatar`| `animesearch`| `wikipedia`| `enlargemoji` | `poll`|  `serverinfo`| | `youtube`"
         )
-        .setColor("#eec9b0");
+        .setColor("#9ace44")
+        .setFooter(`You can use w!help <command_name> for more info`,client.user.displayAvatarURL())
+        .setTimestamp()
 
         await msg.edit({ embeds: [utilityEmbed] })
 

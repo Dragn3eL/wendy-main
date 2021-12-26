@@ -7,8 +7,7 @@ module.exports = {
   botPerms: ["EMBED_LINKS"],
   run: async (client, message, args) => {
 
-    if (!OWNER_ID)
-    return message.channel.send("This command is developer Only");
+    if (!OWNER_ID) return 
 
 
     var mention = message.guild.member(message.mentions.users.first());
