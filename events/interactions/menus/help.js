@@ -13,7 +13,7 @@ module.exports = async(interaction, client) => {
             const settingsEmbed = new Discord.MessageEmbed()
         .setTitle("Some Config Commands")
         .setDescription(
-          " use \`w!dashboard <admin>\` for all admin setup cmds"
+          " use \`w!server admin\` for all admin setup cmds"
         )
         .setColor("#147bd3")
         .setTimestamp()
