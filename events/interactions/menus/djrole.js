@@ -13,7 +13,7 @@ module.exports = async(interaction, client) => {
 
         if (!data) {
 
-            msg.edit('Send the **ROLE ID** for autorole!')
+            msg.edit('Send the **ROLE ID** for DJrole!')
 
             const filter = (m) => m.author.id == interaction.message.author.id
 

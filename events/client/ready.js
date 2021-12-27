@@ -9,12 +9,12 @@ module.exports = (client) => {
 const activities = [
       `${client.guilds.cache.size} Homes`,
       `${client.users.cache.size} awsome people`,
-      `on update validation`,
-      `CPU : ${os.cpuCount()}`
+      `ver 0.09`,
+     // `CPU : ${os.cpuCount()}`
 
 ]
  let i =0;
- setInterval(() => client.user.setActivity(`1 days to go | ${activities[i++ % activities.length]}`, {type: 'PLAYING'}),  15000)
+ setInterval(() => client.user.setActivity(`w!help | ${activities[i++ % activities.length]}`, {type: 'PLAYING'}),  15000)
 
 
 

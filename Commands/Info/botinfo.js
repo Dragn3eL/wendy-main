@@ -13,7 +13,7 @@ const { DEFAULT_PREFIX } = require("../../config.json")
 require("moment-duration-format");
 module.exports = {
   name: "botinfo",
-  aliases: "[wendy]",
+  aliases: ["wendy"],
   usage: "botinfo | wendy",
   description: "Shows the bot info",
 

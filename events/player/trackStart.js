@@ -152,7 +152,7 @@ const pause = new MessageEmbed()
         await button.deferUpdate();
         //if (!client.utils.canModifyQueue(queue.metadata)) return;
 
-        if (queue.tracks.length < 2 && queue.repeatMode !== 2) {
+        if (queue.tracks.length < 1 && queue.repeatMode !== 2) {
           const nosongs = new MessageEmbed().setColor("#ee1616").setDescription(`Currently no of songs in the queue are less to skip :(`).setTimestamp().setFooter(`ت`,`https://cdn.discordapp.com/attachments/726134541638697042/799268980963541012/ezgif.com-gif-maker_17.gif`)
           return queue.metadata.channel.send({ embeds:[nosongs], ephemeral: true }).then(async(msg)=> {
             setTimeout(() => msg.delete(), 3000)

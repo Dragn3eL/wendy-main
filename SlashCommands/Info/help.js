@@ -18,48 +18,65 @@ module.exports = {
     .addComponents(
       new MessageSelectMenu()
       .setCustomId("help_menu")
-      .setPlaceholder('Help Menu')
+      .setPlaceholder('Help Menu- Click on me')
       .setMinValues(1)
       .setMaxValues(1)
       .addOptions([
         {
           label: "Settings",
-          description: "Change the bot settings",
+          description: "Change the bot  server  settings",
           value: "settings",
-          emoji: "🛠"
+          emoji: "🧩"
         },
         
        
+        
         {
           label: "Information",
-          description: "Shows all the information commands",
+          description: "Gets you the information commands",
           value: "info",
-          emoji: "📢"
+          emoji: "<:info:919584891631448115>"
         },
         
         {
           label: "Music",
-          description: "Shows all the Music commands!",
+          description: "All music comamnds :)!",
           value: "music",
-          emoji: "🎵"
+          emoji: "<a:music:763415718271385610>"
         },
-        
-        {
+       {
           label: "Utility",
-          description: "Shows all the utility commands",
+          description: "Some of my utility commands",
           value: "utility",
-          emoji: "🔧"
+          emoji: "⛑️"
         },
        
       ])
     )
 
     let helpEmbed = new MessageEmbed()
-    .setTitle('Help Menu')
-    .setDescription('Choose an option from the menu below!')
-    .setColor("GREEN")
 
-    interaction.reply({ embeds: [helpEmbed], components: [helpMenu]})
+    .setTitle(`${client.user.username }'s Help aka  mY Command Menu`)
+    .setDescription(`Heyyo,me - I am miss Wendy, Wendy marvell from Fairy tail yes!.\nBut now am  here in discord as a Discord Music Bot`)
+    .addField(`__Features__`,
+    `>>> An advance discord bot with a descent music play system spotify <:spotify:919582094391398430> and Soundcloud <:souncloud:919756799303888956> support
+                                 Filters and more things in upcoming updates`)
+     .addField(`:question: __Using me__`,
+    `>>> Ezzy pizzy ,just join a voice channel where i have proper perms and type \`w!play <song_name>\`\n or u can use the prefix set for the server instead of w!`)                            
+    .addField( `<:info:919584891631448115> INFO`,
+    `>>> Prefix: ${DEFAULT_PREFIX} \nTotal Commands: ${client.commands.size}  \nServers: ${client.guilds.cache.size} \n Uptime :${duration}`,true
+  )                             
+    .setColor("#29cddc")
+    .setImage(`https://cdn.discordapp.com/attachments/735293660064776275/798941062148128818/wendy_song.gif`)
+
+    
+    
+
+    interaction.reply({ embeds: [helpEmbed], components: [helpMenu]}).then(msg=>{
+      setTimeout(async function () {
+        await msg.delete();
+      }, 180000)
+    })
     }
   }
 };

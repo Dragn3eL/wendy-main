@@ -33,8 +33,12 @@ module.exports = {
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.reply({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
 
         const queue = client.player.getQueue(message.guild.id);
+        const song = queue.current
+
+         if (song.live)
+         return message.reply({embeds:[{description: `**Can't seek in this song**`, color:0xe33e4a,timestamp: new Date()}]});
          let seektime = args.join('')
-         if (!seektime) return message.reply (` abbe time to likh le , bhakk noob!`)
+         if (!seektime) return message.reply (`Please provide the time duration!.\`w!seek 10s/ 1m\``)
 
         if (!queue || !queue.playing) return message.channel.send({ embeds: [{description:`**There is no song playing in server, add some !**`, color: 0x29cddc ,timestamp:new Date(),footer:{
             text: `UwU`,

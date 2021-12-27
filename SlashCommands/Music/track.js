@@ -269,12 +269,7 @@ module.exports = {
     try {
       if (!queue.connection) { 
         await queue.connect(channel);
-      const embed = new MessageEmbed()
-      .setAuthor("Wendy is here", client.user.displayAvatarURL())
-      .setDescription(`👍 Joined ${queue.connection.channel.toString()} and 📄 bound to ${queue.metadata.channel.toString()}`)
-      .setColor(queue.guild.me.displayColor || "#00FFFF");
-
-      await interaction.editReply({ embeds: [embed]})
+      
       }
       
     } catch (error) {
@@ -354,27 +349,29 @@ module.exports = {
         
             return interaction.editReply({ ephemeral: true, embeds: [embed], allowedMentions: { repliedUser: false } }).catch(console.error);
 
-        } else if (interaction.options.getSubcommand() === "jump") {
+        } 
+    //     else if (interaction.options.getSubcommand() === "jump") {
 
-            const index = interaction.options.getNumber("index", true);
+    //         const index = interaction.options.getNumber("index", true);
 
-    const queue = client.player.getQueue(interaction.guild.id);
+    // const queue = client.player.getQueue(interaction.guild.id);
 
-    if (!queue || !queue.playing)
-      return client.say.errorMessage(interaction, "I’m currently not playing in this guild.");
+    // if (!queue || !queue.playing)
+    //   return client.say.errorMessage(interaction, "I’m currently not playing in this guild.");
 
-    if (!client.utils.canModifyQueue(interaction)) return;
+    // if (!client.utils.canModifyQueue(interaction)) return;
 
-    if (queue.tracks.length < 1)
-      return client.say.errorMessage(interaction, "There is currently no song in the queue.");
+    // if (queue.tracks.length < 1)
+    //   return client.say.errorMessage(interaction, "There is currently no song in the queue.");
 
-    if (!index || index > queue.tracks.length || index < 1 || !queue.tracks[index])
-      return client.say.errorMessage(interaction, "Provided song index does not exist.");
+    // if (!index || index > queue.tracks.length || index < 1 || !queue.tracks[index])
+    //   return client.say.errorMessage(interaction, "Provided song index does not exist.");
 
-    queue.jump(index);
+    // queue.jump(index);
 
-    return client.say.infoMessage(interaction, `Jumped to song \`${index}\`.`);
-        } else if (interaction.options.getSubcommand() === "lyrics") {
+    // return client.say.infoMessage(interaction, `Jumped to song \`${index}\`.`);
+    //     }
+         else if (interaction.options.getSubcommand() === "lyrics") {
             const songName = interaction.options.getString("query", true);
 
             const songNameFormated = songName
@@ -447,22 +444,7 @@ module.exports = {
 
     return client.say.infoMessage(interaction, `${mode}`);
 
-        } else if (interaction.options.getSubcommand() === "mute") {
-
-        const queue = client.player.getQueue(interaction.guild.id);
-
-        if (!queue || !queue.playing)
-          return client.say.errorMessage(interaction, "I’m currently not playing in this guild.");
-    
-        if (!client.utils.canModifyQueue(interaction)) return;
-    
-        if (queue.volume === 0)
-          return client.say.warnMessage(interaction, "The song is already muted.");
-    
-        queue.mute();
-        return client.say.infoMessage(interaction, "Muted the playback.");
-
-         } //else if (interaction.options.getSubcommand() === "move") {
+        } //else if (interaction.options.getSubcommand() === "move") {
 
     //         const fr = await interaction.options.getNumber("from", true);
     // let to = await interaction.options.getNumber("to") ?? 1;
@@ -537,7 +519,7 @@ module.exports = {
 
     queue.remove(index);
 
-    return client.say.infoMessage(interaction, `Removed track \`${sNum}\`.`);
+    return client.say.infoMessage(interaction, `Removed track with index \`${sNum}\`.`);
         
         } else if (interaction.options.getSubcommand() === "resume") {
             const queue = client.player.getQueue(interaction.guild.id);
@@ -550,8 +532,8 @@ module.exports = {
             if (!queue.connection.paused)
               return client.say.warnMessage(interaction, "The song is not paused.");
         
-            queue.setPaused(false);
-            return client.say.infoMessage(interaction, "Resumed the corrent song.");
+           const paused = queue.setPaused(false);
+            return paused ? message.react('▶️') : message.react('❌');
         } else if (interaction.options.getSubcommand() === "seek") {
             let timeString = interaction.options.getString("duration", true);
 
@@ -568,7 +550,7 @@ module.exports = {
               return client.say.warnMessage(interaction, "Can't seek this song.");
         
             if (isNaN(timeString) && !timeString.includes(":"))
-              return client.say.errorMessage(interaction, "Provide a valid duration to seek.");
+              return client.say.errorMessage(interaction, "Provide a valid duration to seek! eg- \`w!seek 10s/1m\`");
         
             if (!isNaN(timeString)) timeString = `00:${timeString}`;
         
@@ -579,7 +561,7 @@ module.exports = {
         
             queue.seek(time);
         
-            return client.say.infoMessage(interaction, `Seeked to \`${timeString}\`.`);
+            return client.say.infoMessage(interaction, `Seeked to \`${timeString}\` in the song.`);
         } else if (interaction.options.getSubcommand() === "shuffle") {
             const queue = client.player.getQueue(interaction.guild.id);
 
@@ -589,7 +571,7 @@ module.exports = {
             if (!client.utils.canModifyQueue(interaction)) return;
         
             if (queue.tracks.length < 3)
-              return client.say.warnMessage(interaction, "Need at least \`3\` songs in the queue to shuffle.");
+              return client.say.warnMessage(interaction, "**Not enough songs in queue to shuffle !**");
         
             queue.shuffle();
         
@@ -607,7 +589,7 @@ module.exports = {
         
             queue.skip();
         
-            return client.say.infoMessage(interaction, "Skipped to the next song.");
+            return client.say.infoMessage(interaction, "Skipped to  next song.");
         } else if (interaction.options.getSubcommand() === "stop") {
             const queue = client.player.getQueue(interaction.guild.id);
 
@@ -618,7 +600,7 @@ module.exports = {
         
             queue.stop();
         
-            return client.say.infoMessage(interaction, "Stopped the music.");
+            return client.say.infoMessage(interaction, "Stopped the music| :wave:");
         } else if (interaction.options.getSubcommand() === "volume") {
             const newVol = interaction.options.getNumber("amount", false);
 
@@ -632,7 +614,7 @@ module.exports = {
             if (!newVol) {
               const embed = client.say.rootEmbed(interaction)
                 .setDescription(`Volume is at \`${queue.volume}%\`.`)
-                .setFooter(`Use \'\/volume <1-200>\' to change the volume.`);
+                .setFooter(`You can \'\/volume <1-200>\' to change the volume.`);
         
               return interaction.editReply({ ephemeral: true, embeds: [embed], allowedMentions: { repliedUser: false } }).catch(console.error);
             }
@@ -643,19 +625,6 @@ module.exports = {
             queue.setVolume(newVol);
         
             return client.say.infoMessage(interaction, `Volume is updated to \`${queue.volume}%\`.`);
-        } else if (interaction.options.getSubcommand() === "unmute") {
-            const queue = client.player.getQueue(interaction.guild.id);
-
-            if (!queue || !queue.playing)
-              return client.say.errorMessage(interaction, "I’m currently not playing in this guild.");
-        
-            if (!client.utils.canModifyQueue(interaction)) return;
-        
-            if (queue.volume > 0)
-              return client.say.warnMessage(interaction, "The song is already unmuted.");
-        
-            queue.unmute();
-            return client.say.infoMessage(interaction, "Unmuted the playback.");
         }
     }
 }
