@@ -7,12 +7,12 @@ module.exports = {
   botPerms: ["EMBED_LINKS"],
   aliases:[`support`],
   usage:"w!<invite/support>\n <> optional",
+  cooldowns:"5s",
   run: async (client, message, args) => {
 
 
     const row = new MessageActionRow().addComponents(
        new MessageButton()
-       //.setCustomId("ok")
        .setLabel("Invite me")
        .setStyle("LINK")
        .setURL(`https://discord.com/api/oauth2/authorize?client_id=724135554966355968&permissions=2453007697&scope=bot`)

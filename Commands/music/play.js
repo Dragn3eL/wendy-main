@@ -34,6 +34,13 @@ module.exports = {
       if (!search_Song) return message.reply({embeds:[{description: `**Please indicate the title of  the song you want me to play **`, color:0xe33e4a,timestamp: new Date()}]})
       //(`Type Song name or Link`);
       
+      let song = await client.player
+      .search(search_Song, {
+        requestedBy: message.author, searchEngine: QueryType.AUTO 
+      })
+     
+    if (!song || !song.tracks.length) return message.reply({embeds:[{description: ` I cant find anything for \`${search_Song}\``, color:0xe33e4a,timestamp: new Date()}]})
+
   
       let queue = client.player.createQueue(message.guild.id, {
   
@@ -51,26 +58,19 @@ module.exports = {
   
       // verify vc connection
       try {
-        if (!queue.connection) await queue.connect(voiceChannel);
+        if (!queue.connection) await queue.connect(message.member.voice.channel);
       } catch {
         client.player.deleteQueue(message.guild.id)
-        queue.destroy()
-        return await message.reply({
+     //   queue.destroy()
+         return await message.reply({
           content: "Could not join your voice channel!",
           ephemeral: true,
         });
       }
   
-      let song = await client.player
-        .search(search_Song, {
-          requestedBy: message.author,
-        })
-        song.playlist ? queue.addTracks(song.tracks) : queue.addTrack(song.tracks[0]);
+   
   
-      if (!song || !song.tracks.length) return message.reply({embeds:[{description: ` I cant find anything for \`${search_Song}\``, color:0xe33e4a,timestamp: new Date()}]})
-
-  
-      if (!queue.playing) await queue.play();
+ 
   
       let songembed = new MessageEmbed()
    .setColor('#29CDDC')
@@ -85,6 +85,10 @@ module.exports = {
       setTimeout(() => msg.delete(), 2000)
     })
     .catch()
+ if (song.playlist) song.tracks[0].playlist = song.playlist;
+    song.playlist ? queue.addTracks(song.tracks) : queue.addTrack(song.tracks[0]);
+
+    if (!queue.playing) await queue.play();
 
    // message.channel.send({ content: ` }); 
    

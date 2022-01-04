@@ -1,17 +1,16 @@
-const { MessageEmbed, MessageActionRow, MessageSelectMenu} = require("discord.js");
+const { MessageEmbed, MessageActionRow, MessageSelectMenu,MessageButton} = require("discord.js");
 const { DEFAULT_PREFIX } = require("../../config.json")
 const moment = require("moment");
 
 module.exports = {
   name: "help",
   description: "Get the Command List",
-  aliases: ["commands", "cmd", "h"],
+  aliases: ["commands", "h"],
   botPerms: ["EMBED_LINKS"],
   run: async (client, message, args) => {
 
     const duration = moment
-          .duration(client.uptime)
-          .format(" D [days], H [hrs], m [mins], s [secs]");
+          .duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]")
 
 
     if (args[0]) {
@@ -19,7 +18,7 @@ module.exports = {
       let cmd = client.commands.get(command);
 
       if (!cmd) {
-        return message.channel.send("Couldn't find that command!")
+        return message.channel.send({embeds:[{description:` The command doesnt seem to exist | :/`,color:`#29cddc`,timestamp:new Date()}]})
       } else if (cmd) {
         let description = cmd.description ? cmd.description : "No description available.";
         let aliases = cmd.aliases ? cmd.aliases.join(", ") : "No aliases available.";
@@ -56,7 +55,7 @@ module.exports = {
     .addComponents(
       new MessageSelectMenu()
       .setCustomId("help_menu")
-      .setPlaceholder(`${client.user.username }'s Help aka Command Menu`)
+      .setPlaceholder(`Click me to get Help-menu pages & cmds`)
       .setMinValues(1)
       .setMaxValues(1)
       .addOptions([
@@ -91,22 +90,42 @@ module.exports = {
        
       ])
     )
+    const row = new MessageActionRow().addComponents(
+      new MessageButton()
+      .setLabel("Invite me")
+      .setStyle("LINK")
+      .setURL(`https://discord.com/api/oauth2/authorize?client_id=724135554966355968&permissions=2453007697&scope=bot`)
+      .setEmoji(`<:wendy:924135346583797850>`),
+     
+     new MessageButton()
+     .setLabel("Support Server")
+     .setStyle("LINK")
+     .setURL(`https://discord.gg/6yRpW7e3dS`)
+     .setEmoji('🏠'),
+     new MessageButton()
+     .setLabel("vote")
+     .setStyle("LINK")
+     .setURL("https://top.gg/bot/724135554966355968/vote")
+     .setEmoji('🌐')
+    // .setDisabled()
+
+   )
 
     let editEmbed = new MessageEmbed()
     .setTitle(`${client.user.username }'s Help aka  mY Command Menu`)
     .setDescription(`Heyyo,me - I am miss Wendy, Wendy marvell from Fairy tail yes!.\nBut now am  here in discord as a Discord Music Bot`)
     .addField(`__Features__`,
     `>>> An advance discord bot with a descent music play system spotify <:spotify:919582094391398430> and Soundcloud <:souncloud:919756799303888956> support
-                                 Filters and more things in upcoming updates`)
+                                 Per server settings,filters and more things in upcoming updates`)
      .addField(`:question: __Using me__`,
     `>>> Ezzy pizzy ,just join a voice channel where i have proper perms and type \`w!play <song_name>\`\n or u can use the prefix set for the server instead of w!`)                            
     .addField( `<:info:919584891631448115> INFO`,
-    `>>> Prefix: ${DEFAULT_PREFIX} \nTotal Commands: ${client.commands.size}  \nServers: ${client.guilds.cache.size} \n Uptime :${duration}`,true
+    `>>> **Prefix:** \`${DEFAULT_PREFIX}\` \n**Total Commands:** \`${client.commands.size}\`  \n**Servers:** \`${client.guilds.cache.size}\` \n **Uptime :** \`${duration}\``,true
   )                             
     .setColor("#29cddc")
     .setImage(`https://cdn.discordapp.com/attachments/735293660064776275/798941062148128818/wendy_song.gif`)
 
-      message.channel.send({ embeds: [editEmbed], components: [helpMenu]}).then(msg=>{
+      message.channel.send({ embeds: [editEmbed], components: [helpMenu,row]}).then(msg=>{
         setTimeout(async function () {
           await msg.delete();
         }, 180000)

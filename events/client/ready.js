@@ -6,15 +6,28 @@ var os = require('os-utils');
 module.exports = (client) => {
  client.user.setPresence({ status: "idle" });
 
-const activities = [
-      `${client.guilds.cache.size} Homes`,
-      `${client.users.cache.size} awsome people`,
-      `ver 0.09`,
-     // `CPU : ${os.cpuCount()}`
+ const activities_list = [
+  { type: 'PLAYING',  message: `w!help`  },
+  { type: 'WATCHING', message: `${client.users.cache.size} awsome people`, },
+  { type: 'LISTENING', message: `in ${client.guilds.cache.size} Homes` }
+];
 
-]
- let i =0;
- setInterval(() => client.user.setActivity(`w!help | ${activities[i++ % activities.length]}`, {type: 'PLAYING'}),  15000)
+
+  setInterval(() => {
+      const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
+
+      client.user.setActivity(activities_list[index].message, { type: activities_list[index].type });
+  }, 15000);
+
+// const activities = [
+//       `${client.guilds.cache.size} Homes`,
+//       `${client.users.cache.size} awsome people`,
+//       `ver 0.09`,
+//      // `CPU : ${os.cpuCount()}`
+
+// ]
+//  let i =0;
+//  setInterval(() => client.user.setActivity(`w!help | ${activities[i++ % activities.length]}`, {type: 'PLAYING'}),  15000)
 
 
 

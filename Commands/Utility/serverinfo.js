@@ -7,7 +7,7 @@ module.exports = {
   description: "Shows info about a server",
   usage: "[command]",
   botPerms: ["EMBED_LINKS"],
-  run: async (client, message, args) => {
+  run: async (client, message,guild, args) => {
     //command
     const mention = message.member;
     const afk =
@@ -38,17 +38,19 @@ module.exports = {
       southafrica: "South Africa",
       india: "India",
     };
+    let own = await guild.fetchOwner()
+
     const serverembed = new Discord.MessageEmbed()
       .setAuthor(`${message.guild.name}`, message.guild.iconURL())
       .setThumbnail(servericon)
       .addField(
         `General Info`,
-        `Owner: ${message.guild.owner} \nRegion: \`${
+        `Owner:\`${guild.members.cache.get(own.id) ? guild.members.cache.get(own.id).user.tag : "Unknown user"}\` ${own.id}\` \nRegion: \`${
           region[message.guild.region]
         }\` \nVerification Lvl: \`${
           verifLevels[message.guild.verificationLevel]
         }\``
-      )
+        )
       .addField(
         `Overview`,
         `Total Channels: \`${

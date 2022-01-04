@@ -105,7 +105,8 @@ process.on("uncaughtException", (err) => {
   .setTitle("Uncaught Exception")
   .setDescription(`${err}`)
   .setColor("RED")
-  client.channels.cache.get(ERROR_LOGS_CHANNEL).send({ embeds: [exceptionembed] })
+  //client.channels.cache.get(ERROR_LOGS_CHANNEL).send({ embeds: [exceptionembed] })
+
 });
 
 process.on("unhandledRejection", (reason, promise) => {

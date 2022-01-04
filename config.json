@@ -1,9 +1,9 @@
 {
 
-    "OWNER_ID":"672695020100386846",
+    "OWNER_ID":["672695020100386846","672695020100386846"],
     "BOT_TOKEN": "ODQwMDUwMDUwODUxNTM2OTM2.YJSjkw.zQ_yp9AAc49nYesMqUcF5IwGL4o",
     "tenorAPI":"ZEEELJXAFQBN",
-    "DEFAULT_PREFIX":"u!",
+    "DEFAULT_PREFIX":"w!",
     "mongoPass": "mongodb+srv://dragneel:ursidae19@cluster0.rfyv7.mongodb.net/test",
     "ERROR_LOGS_CHANNEL": "901291703724572703",
     "ALEXFLIPNOTE_API_KEY":"",
