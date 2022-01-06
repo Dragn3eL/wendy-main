@@ -12,6 +12,7 @@ module.exports = {
     description: "Remove a song from the server Queue!",
     ownerOnly: false,
     nsfwOnly: false,
+    enabled:false,
    // voiceChannel:true,
     run: async (client, message, args,player) => {
         let voiceChannel = message.member.voice.channel;
