@@ -14,8 +14,8 @@ module.exports = {
     const link = `https://www.wikipedia.org/w/index.php?search=${search}&ns0=1`;
     const embed = new Discord.MessageEmbed()
       .setTitle("Wikipedia Search")
-      .addField(`You Searched for:`, `${msg}`)
-      .addField(`Results:`, `[Here's What I found](${link})`)
+      .addField(`Query for:`, `${msg}`)
+      .addField(`Results:`, `[My search results](${link})`)
       .setColor("RANDOM");
 
     message.channel.send({ embeds: [embed] });

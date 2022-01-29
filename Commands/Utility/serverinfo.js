@@ -38,14 +38,14 @@ module.exports = {
       southafrica: "South Africa",
       india: "India",
     };
-    let own = await guild.fetchOwner()
+  
 
     const serverembed = new Discord.MessageEmbed()
       .setAuthor(`${message.guild.name}`, message.guild.iconURL())
       .setThumbnail(servericon)
       .addField(
         `General Info`,
-        `Owner:\`${guild.members.cache.get(own.id) ? guild.members.cache.get(own.id).user.tag : "Unknown user"}\` ${own.id}\` \nRegion: \`${
+        `Owner:\`${message.guild.owner}\nRegion: \`${
           region[message.guild.region]
         }\` \nVerification Lvl: \`${
           verifLevels[message.guild.verificationLevel]

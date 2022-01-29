@@ -83,7 +83,7 @@ module.exports = {
         },
        {
           label: "Utility",
-          description: "some of my utility commands",
+          description: "Some of my utility commands",
           value: "utility",
           emoji: "⛑️"
         },
@@ -113,13 +113,13 @@ module.exports = {
 
     let editEmbed = new MessageEmbed()
     .setTitle(`${client.user.username }'s Help aka  mY Command Menu`)
-    .setDescription(`Heyyo,me - I am miss Wendy, Wendy marvell from Fairy tail yes!.\nBut now am  here in discord as a Discord Music Bot`)
+    .setDescription(`Heyyo ${message.author.toString()},me - I am miss Wendy, Wendy marvell from Fairy tail yes!.\nBut now am  here in discord as a Discord Music Bot`)
     .addField(`__Features__`,
     `>>> An advance discord bot with a descent music play system spotify <:spotify:919582094391398430> and Soundcloud <:souncloud:919756799303888956> support
                                  Per server settings,filters and more things in upcoming updates`)
      .addField(`:question: __Using me__`,
     `>>> Ezzy pizzy ,just join a voice channel where i have proper perms and type \`w!play <song_name>\`\n or u can use the prefix set for the server instead of w!`)                            
-    .addField( `<:info:919584891631448115> INFO`,
+    .addField( `<:info:919584891631448115> __INFO__`,
     `>>> **Prefix:** \`${DEFAULT_PREFIX}\` \n**Total Commands:** \`${client.commands.size}\`  \n**Servers:** \`${client.guilds.cache.size}\` \n **Uptime :** \`${duration}\``,true
   )                             
     .setColor("#29cddc")

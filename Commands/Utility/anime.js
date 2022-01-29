@@ -8,6 +8,14 @@ module.exports = {
   usage: "w!anime <animename>",
   aliases:["animesearch"],
 run: async (client, message, args) => {
+
+      if (!message.channel.nsfw) {
+        message.react(`❌`);
+         return message.reply({embeds:[{description:`Please make sure to set the channel to  **NSFW**`,color:0x29cddc,timestamp:new Date()}]}).then((m) =>{
+           setTimeout(() => m.delete(), 4000);
+         })
+      }
+
         const search = `${args}`;
         if(!search)
         return message.reply('Enter a valid search query [if invalid no results would come.]');

@@ -12,7 +12,7 @@ module.exports = {
     description: "Remove a song from the server Queue!",
     ownerOnly: false,
     nsfwOnly: false,
-    enabled:false,
+  //  enabled:false,
    // voiceChannel:true,
     run: async (client, message, args,player) => {
         let voiceChannel = message.member.voice.channel;
@@ -30,17 +30,28 @@ module.exports = {
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.reply({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
     
         const queue = client.player.getQueue(message.guild);
-        if (!queue || !args[1]) return;
-        const trackIndex = args[1] - 1;
-        if(!queue.tracks[trackIndex]) return;
-        const trackName = queue.tracks[trackIndex].title;
-        const trackUrl = queue.tracks[trackIndex].url;
-        queue.remove(trackIndex);
+     
+        
+        if (!queue || !queue.playing) {
+             
+            const embed = new MessageEmbed().setDescription(` There are no songs in the queue or played :/,add some !`).setColor('#29cddc').setTimestamp().setFooter(`${queue.guild.name} Queue`, client.user.displayAvatarURL())
+            return message.reply({embeds:[embed]});
+       }
+       if (queue.tracks.length < 1){
+           message.reply({embeds:[{description:`There are no songs in queue to remove !`,color:0x29cddc,timestamp: new Date(),footer:{text:`${message.author.usename}`,icon_rul:`${message.author.displayAvatarURL()}`}}]})
+       }
+        const index = args.join(" ")
+        if( !index) return message.reply({embeds:[{description:`Please provide a valid index of my music queue\n eg \`w!remove  1/2/3\``,color:0x29cddc}]})
+       
+        const index1 = (index - 1);
+        if (!index1 || index1 < 0 || index1 > queue.tracks.length || !queue.tracks[index1])
+      return message.reply({embeds:[{description:`Your provided song index does'nt exist.. try again!`,color:0x29cddc,timestamp:new Date()}]})
 
+      queue.remove(index1);
         message.channel.send({
             embeds: [
                 {
-                    description: `Removed [${trackName}](${trackUrl})`,
+                    description: `Removed  song with queue no.**${index}** `,
                     color: 0xda505c
                 }
             ]

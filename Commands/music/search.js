@@ -12,7 +12,7 @@ module.exports = {
     description: "search a song as query!",
     ownerOnly: false,
     nsfwOnly: false,
-    enabled:false,
+  //  enabled:false,
   //  voiceChannel:true,
     botPerms: ["SEND_MESSAGES","EMBED_LINKS", "MANAGE_MESSAGES"],
     run: async (client, message, args) => {

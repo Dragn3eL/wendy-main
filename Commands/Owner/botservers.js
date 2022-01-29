@@ -11,9 +11,7 @@ module.exports = {
   run: async (client, message, args) => {
     try {
       if (message.author.id != OWNER_ID)
-        return message.channel.send(
-          `<a:_cross:725303285015117844> Developer Only <a:_cross:725303285015117844>`
-        );
+        return ;
      let data = []
       let guilds = client.guilds.cache.map((x) => `🔹**${x.name}** | \`${x.memberCount}\` members (ID: ${x.id})\n`);
  let embed = new Discord.MessageEmbed()

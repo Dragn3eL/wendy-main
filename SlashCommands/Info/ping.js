@@ -5,7 +5,7 @@ module.exports = {
   description: "Get the bot's ping!",
   options: [
     {
-      name: "info",
+      name: "bot",
       description: "Get the bot's ping!",
       type: 'SUB_COMMAND'
     }

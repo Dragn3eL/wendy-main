@@ -18,6 +18,7 @@
     "@discord-player/downloader": "^3.0.1",
     "@discordjs/builders": "^0.8.0",
     "@discordjs/opus": "^0.6.0",
+    "@discordjs/voice": "^0.7.5",
     "@iamtraction/google-translate": "^1.1.2",
     "alexflipnote.js": "^2.5.0",
     "ascii-table": "0.0.9",
@@ -44,7 +45,6 @@
     "enmap": "^5.8.7",
     "express": "^4.17.1",
     "ffmpeg": "^0.0.4",
-    "ffmpeg-static": "^4.4.0",
     "figlet": "^1.5.0",
     "flip-text": "^1.1.0",
     "fs": "0.0.1-security",
@@ -79,7 +79,7 @@
     "twemoji-parser": "^13.0.0",
     "urban": "^0.3.2",
     "util": "^0.12.3",
-    "ytdl-core": "^4.10.0",
+    "ytdl-core": "^4.9.2",
     "ytdl-core-discord": "^1.2.4"
   },
   "devDependencies": {

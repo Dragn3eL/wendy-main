@@ -3,7 +3,7 @@ const { QueueRepeatMode } = require('discord-player');
 const { waitForDebugger } = require('inspector');
 
 module.exports = {
-    name: "track",
+    name: "music",
     description: "Listen to music in your server!",
     subCommands: ["play", "pause", "previoustrack", "info", "jump", "lyrics", "loop", "mute", "move", "queue", "remove", "resume", "seek", "shuffle", "skip", "stop", "volume", "unmute"],
     category: "Music",
@@ -319,6 +319,13 @@ module.exports = {
               return client.say.errorMessage(interaction, "I’m currently not playing in this guild.");
         
             let song = queue.current;
+           // const track = queue.current;
+            const timestamp = queue.getPlayerTimestamp();
+            const trackduration= timestamp.progress == 'No End' ? 'Live 🔴' : song.duration
+   
+            const progresss = queue.createProgressBar()
+            const repeat = client.player.getQueue(message.guild.id).repeatMode ? `ON`:`OFF`
+               const methods = [`Disabled`,`Track`,`Queue`]
         
             if (index) {
               songNum = (index - 1);
@@ -330,21 +337,26 @@ module.exports = {
             }
         
             const embed = new MessageEmbed()
-              .setColor(interaction.guild.me.displayColor || "#00FFFF")
+              .setColor("#29cddc")
               .setTitle(`${song.title}`)
               .setURL(`${song.url}`)
-              .setImage(`${song.thumbnail}`);
+              .setThumbnail(`${song.thumbnail}`);
         
             if (song === queue.current) {
-              embed.setAuthor(`Now playing 🎶`)
-                .setDescription(`~ Played by: ${song.requestedBy.toString()}
-        ${queue.createProgressBar()}`)
+              embed.setAuthor(`Now playing in ~ \n${queue.guild.name}`,message.guild.iconURL())
+               embed.addField(`Requested by`,song.requestedBy.toString(), true)
+              
+               embed.setDescription(`👍 Joined ${queue.connection.channel.toString()} and 📄 bound to ${queue.metadata.channel.toString()}`)
+               embed.addField(`Requested by`,song.requestedBy.toString(), true)
+            embed.addField(`Channel`,song.author,true)
+            embed.addField(`Info`,`Volume : \`${queue.volume}\`| Loop mode \`${repeat}| ${methods[queue.repeatMode]}\``)
+            embed.addField(`\u200b`,`${progresss}(**${trackduration}**%)`)
         .setImage(`${song.thumbnail}`);
             } else {
               embed.setAuthor("Songinfo 🎵")
                 .setDescription(`~ Requested by: ${song.requestedBy.toString()}
-        Duration: ${song.duration}
-        Position in queue: ${index}`);
+        Duration: ${song.duration}`);
+        embed.addField(`Position in queue:` ,`${index}`);
             }
         
             return interaction.editReply({ ephemeral: true, embeds: [embed], allowedMentions: { repliedUser: false } }).catch(console.error);

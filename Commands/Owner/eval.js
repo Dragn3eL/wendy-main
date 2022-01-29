@@ -26,7 +26,7 @@ module.exports = {
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${err}\n\`\`\``);
+      message.channel.send(`\`OOPSIE\` \`\`\`yml\n${err}\n\`\`\``);
     }
   },
 };

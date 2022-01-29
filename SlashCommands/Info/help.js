@@ -1,4 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageSelectMenu} = require("discord.js");
+const { DEFAULT_PREFIX } = require("../../config.json")
 
 module.exports = {
   name: "help",
@@ -18,7 +19,7 @@ module.exports = {
     .addComponents(
       new MessageSelectMenu()
       .setCustomId("help_menu")
-      .setPlaceholder('Help Menu- Click on me')
+      .setPlaceholder('Click me to get Help-menu pages & cmds')
       .setMinValues(1)
       .setMaxValues(1)
       .addOptions([

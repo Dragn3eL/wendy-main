@@ -41,7 +41,7 @@ module.exports = async(interaction, client) => {
             const infoEmbed = new Discord.MessageEmbed()
         .setTitle("Little Info Commands")
         .setDescription(
-          "`botinfo`| `help`| `invite`|`support` | `ping`|  `report`| `userinfo`|  `serverinfo`| `suggest`"
+          "`botinfo`| `help`| `invite`|`support` | `ping`|  `report`| `userinfo`|  `serverinfo`| `suggest`| `uptime`"
         )
         .setColor("#bb34ff")
         .setFooter(`You can use w!help <command_name> for more info`,client.user.displayAvatarURL())

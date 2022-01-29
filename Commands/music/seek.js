@@ -63,7 +63,7 @@ module.exports = {
             embeds: [
                 {
                     description: `Seeked to **${ms(timeToMS, { long: true })}** on the song`,
-                    color: 0xda505c
+                    color: 0x4cc64c
                 }
             ]
         });

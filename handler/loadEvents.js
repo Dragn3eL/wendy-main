@@ -10,8 +10,8 @@ function loadEvents(client) {
   // client events
   client.on("ready", () => clientEvent("ready")(client));
   client.on("messageCreate", (m) => clientEvent("mention")(m, client));
-  client.on("guildCreate", (m) => clientEvent("guildCreate")(m, client));
-  client.on("guildDelete", (m) => clientEvent("guildDelete")(m, client));
+ // client.on("guildCreate", (m) => clientEvent("guildCreate")(m, client));
+  //client.on("guildDelete", (m) => clientEvent("guildDelete")(m, client));
 
   // guild events
   client.on('interactionCreate', (m) => guildEvent("interactionCreate")(m, client));

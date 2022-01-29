@@ -4,7 +4,7 @@ module.exports = {
     name: "server",
     description: "View the  server dashboard for the required category.",
     botPerms: ["MANAGE_GUILD"],
-    userPerms: ["ADMINISITRATOR"],
+    userPerms: ["ADMINISTRATOR"],
     run: async(client, message, args)=>{
         if (!args[0]){
             return message.channel.send(`\n  For admin settings  \`w!server admin\``);
@@ -14,7 +14,7 @@ module.exports = {
             .addComponents(
                 new MessageSelectMenu()
                 .setCustomId("adminMenu")
-                .setPlaceholder("Admin Menu")
+                .setPlaceholder("Admin Menu settings")
                 .setMinValues(1)
                 .setMaxValues(1)
                 .addOptions([
@@ -34,7 +34,7 @@ module.exports = {
             )
             let dashembed = new MessageEmbed().setColor('#29cddc').setDescription(`Management settings below\n select an option from the dropdown.Thanks!`).setTimestamp().setFooter(message.guild.name,client.user.displayAvatarURL())
 
-            return message.channel.send({embeds:[{description: `Admin settings for ${message.guild.name}`,color:('#29cddc').setTimestamp()}], components: [adminMenu]})
+            return message.channel.send({embeds:[{description: `Admin settings for ${message.guild.name}`,color:0x29cddc,timestamp:new Date()}], components: [adminMenu]})
 
         } else {
             return message.channel.send("That option doesn't seem to exist!")

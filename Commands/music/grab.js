@@ -5,10 +5,10 @@ const {MessageEmbed} = require("discord.js")
 const { DEFAULT_PREFIX } = require("../../config.json")
 
 module.exports = {
-    name: "save",
-    aliases: ["sv"],
+    name: "grab",
+    aliases: ["gb"],
     category: "Music",
-    usage: `${DEFAULT_PREFIX}save`,
+    usage: `${DEFAULT_PREFIX}grab`,
     description: "save a song in bot dm!",
     ownerOnly: true,
     enabled:false,
@@ -29,5 +29,16 @@ module.exports = {
     
       if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.reply({embeds: [{description:`Be in the same \`vc\` i connect to!`,color:0xe33e4a,timestamp: new Date()}]})
         
+      if (!gqueue ||!gqueue.playing) return message.channel.send({embeds:[{description:`There is no music playing  in  the server`,color:0x29cddc,timestamp:new Date()}]})
+
+      message.author.send({embeds:[{description:` ✅ Saved  the  track  (${gqueue.current.title}[${gqueue.current.url}] || ${queue.current.author})`,color:0x29cddc,timestamp: new Date(),footer:{text: `From ${gqueue.guild.name}`,icon_url:`${message.guild.iconURL()}`}}]}).then(() =>{
+        message.channel.send({embeds:[{description:`Grabbed the song for you in dm UwU`}]})
+      }).catch(error =>{
+        message.channel.send({embeds:[{description:`Can't send priavte message! Gomenasai  :I`,color:0xc24752,timestaml:new Date()}]})
+      })
+
+
+
+
    
     }}
