@@ -79,7 +79,7 @@
     "twemoji-parser": "^13.0.0",
     "urban": "^0.3.2",
     "util": "^0.12.3",
-    "ytdl-core": "^4.9.2",
+    "ytdl-core": "^4.10.0",
     "ytdl-core-discord": "^1.2.4"
   },
   "devDependencies": {

@@ -78,14 +78,14 @@ module.exports = async( queue,track,client,message, args,) => {
   .addComponents([playPause], [skip], [repeat], [stop], [shuffle])
 
   const controlRow2 = new MessageActionRow()
-  .addComponents([volumeLess], [volumeMore])
+  .addComponents([shuffle])
 
-  const playMessage = await queue.metadata.channel.send({ embeds: [embed], components: [controlRow1] }).then(async(msg)=>{
+  const playMessage = await queue.metadata.channel.send({ embeds: [embed], components: [controlRow1,controlRow2] }).then(async(msg)=>{
     /**
      * Function to delete the message after the stop button is used
      */
     async function usedStop() {
-      await msg.delete()
+      await msg.delete().catch((error))
     }
     // Delete message after song has ended!
     setTimeout(async function(){
@@ -96,7 +96,7 @@ module.exports = async( queue,track,client,message, args,) => {
       }
     }, track.durationMS)
        
-  const filter = (user) => user.id === queue.metadata.member.id;
+  const filter = (user) =>  !user.bot ||user.id === queue.metadata.member.id;
 
   var collector = await msg.createMessageComponentCollector(filter, {
     time: track.duration  > 0 ? track.duration * 1000 : 600000
