@@ -1,7 +1,7 @@
 {
 
     "OWNER_ID":["672695020100386846"],
-    "BOT_TOKEN": "NzI0MTM1NTU0OTY2MzU1OTY4.Xu7xyg.zqxlVEwodsgbNrdPJLNp6UhoLuI",
+    "BOT_TOKEN": "",
     "tenorAPI":"ZEEELJXAFQBN",
     "DEFAULT_PREFIX":"v!",
     "mongoPass": "mongodb+srv://dragneel:ursidae19@cluster0.rfyv7.mongodb.net/test",
