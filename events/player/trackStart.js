@@ -75,17 +75,17 @@ module.exports = async( queue,track,client,message, args,) => {
 
   // A row cannot have more than 4 components!
   const controlRow1 = new MessageActionRow()
-  .addComponents([playPause], [skip], [repeat], [stop], [shuffle])
+  .addComponents([playPause], [skip], [repeat], [stop],[shuffle])
 
   const controlRow2 = new MessageActionRow()
   .addComponents([shuffle])
 
-  const playMessage = await queue.metadata.channel.send({ embeds: [embed], components: [controlRow1,controlRow2] }).then(async(msg)=>{
+  const playMessage = await queue.metadata.channel.send({ embeds: [embed], components: [controlRow1] }).then(async(msg)=>{
     /**
      * Function to delete the message after the stop button is used
      */
     async function usedStop() {
-      await msg.delete().catch((error))
+      await msg.delete()
     }
     // Delete message after song has ended!
     setTimeout(async function(){
