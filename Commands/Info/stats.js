@@ -13,6 +13,7 @@ module.exports = {
   name: "stats",
   descriptiom: "Get Wendy's Stats",
   botPerms: ["EMBED_LINKS"],
+  usage:`w!stats`,
   run: async (client, message, args, level) => {
     // eslint-disable-line no-unused-vars
     try {

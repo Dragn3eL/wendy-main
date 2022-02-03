@@ -72,19 +72,19 @@ module.exports = {
   
  
   
-      let songembed = new MessageEmbed()
-   .setColor('#29CDDC')
-          .setFooter(client.user.username + " | UwU ",client.user.displayAvatarURL())
-          .setTitle(' 🔍 Searching....')
-          .setDescription(`\`\`\`diff\n+${args.join(" ")}\n\`\`\``)
-          .setThumbnail(message.author.displayAvatarURL())
+  //     let songembed = new MessageEmbed()
+  //  .setColor('#29CDDC')
+  //         .setFooter(client.user.username + " | UwU ",client.user.displayAvatarURL())
+  //         .setTitle(' 🔍 Searching....')
+  //         .setDescription(`\`\`\`diff\n+${args.join(" ")}\n\`\`\``)
+  //         .setThumbnail(message.author.displayAvatarURL())
+   await message.react (`🔍`)
   
-  
-      await  message.channel.send({ embeds: [songembed] }).then(msg => {
-      message.delete()
-      setTimeout(() => msg.delete(), 2000)
-    })
-    .catch()
+  //     await  message.channel.send({ embeds: [songembed] }).then(msg => {
+  //     message.delete()
+  //     setTimeout(() => msg.delete(), 2000)
+  //   })
+  //   .catch()
  if (song.playlist) song.tracks[0].playlist = song.playlist;
     song.playlist ? queue.addTracks(song.tracks) : queue.addTrack(song.tracks[0]);
 

@@ -125,7 +125,7 @@ module.exports = {
     .setColor("#29cddc")
     .setImage(`https://cdn.discordapp.com/attachments/735293660064776275/798941062148128818/wendy_song.gif`)
 
-      message.channel.send({ embeds: [editEmbed], components: [helpMenu,row]}).then(msg=>{
+      message.channel.send({ content:`Need some tiny extra help, join our support server! :) https://discord.gg/6yRpW7e3dS `,embeds: [editEmbed], components: [helpMenu,row]}).then(msg=>{
         setTimeout(async function () {
           await msg.delete();
         }, 180000)

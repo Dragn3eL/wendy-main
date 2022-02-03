@@ -3,6 +3,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const { DEFAULT_PREFIX, OWNER_ID } = require('../../config')
 const { Collection } = require("discord.js");
 const { description } = require("../../Commands/Config/djrole");
+const config = require("../../config.json")
 const { truncateSync } = require("fs");
 module.exports = async (message, cooldowns) => {
 
@@ -57,12 +58,12 @@ module.exports = async (message, cooldowns) => {
  }
 
     // ownerOnly thing
-    if(command.ownerOnly === true) {
-      if(!message.author.id === OWNER_ID) {
+    if((command.ownerOnly === true) && !config.OWNER_ID.includes(message.author.id)) {
+      
         return message.reply({  embeds: [{description:'This command is OwnerOnly command !',color: 0xe33e4a, timestamp:new Date()
       } ] })
         //('This command is Owner only!')
-      }
+      
     }
     // user permissions handler
   if (!message.member.permissions.has(command.userPerms || [])) {
