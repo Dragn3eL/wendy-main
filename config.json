@@ -1,12 +1,14 @@
 {
 
-    "OWNER_ID":["672695020100386846"],
-    "BOT_TOKEN": "NzI0MTM1NTU0OTY2MzU1OTY4.Xu7xyg.zqxlVEwodsgbNrdPJLNp6UhoLuI",
+    "OWNER_ID":["672695020100386846","671678617318850560"],
+    "BOT_TOKEN": "",
     "tenorAPI":"ZEEELJXAFQBN",
     "DEFAULT_PREFIX":"v!",
     "mongoPass": "mongodb+srv://dragneel:ursidae19@cluster0.rfyv7.mongodb.net/test",
     "ERROR_LOGS_CHANNEL": "901291703724572703",
     "ALEXFLIPNOTE_API_KEY":"",
+    "INVITE_LINK":"https://discord.com/api/oauth2/authorize?client_id=724135554966355968&permissions=2453007697&scope=bot",
+    "SUPPORT":"https://discord.gg/6yRpW7e3dS",
     "YT_COOKIE": "VISITOR_INFO1_LIVE=2lRAk2b1NPM; PREF=tz=Asia.Kolkata&f6=40000000&f5=20000; NID=511=GHXgHwbbjWmjKsNZ2hPfXsHqTXKq-MX08BTzYqx2Ymfio58T3C8HWyA1HfO4myaIancDIe4eKxylq6VhEKUp02Hn94l_sb_jepfIIESPTIaEN_zRG_95j2GEMZsJ75EBMye7v65s8cAD4tNDPCT95GopJ3zd17ojshc8FT5JI24; __Secure-3PSID=FwhmCfqeKcz7kXUOySrIMs2apqw3xR2_-cnq0AdmPS7SQd_FBxeFK6fKhdd7C1lCLWAa0A.; __Secure-3PAPISID=VVqGzy2H_CzDieq6/A14YxFCew_W2PoUKi; __Secure-3PSIDCC=AJi4QfHJ5RQbsQikFOeV2OA3VuovALoaOpXDLSXo_P9ptaJ8N9uKbtuP8sNfFNurHHTdRVMOdgvo; SID=FwhmCfqeKcz7kXU…PZYZk8HNx_THjw2Xk6Whg:QUQ3MjNmelNNajduZHhoaWFQVnFudHpyUm12akUxbEpyR0RjTDFsY19VQUhQRHl3Yk0ydEliUXVnOTlqNmhXcjdScnNUem9SdGZLbW9aM0twQVp1LVpnckw5TGZJUjNobWNtdzh1ZlNTQkpjSU9rU1IxcjRpams1YkhCNlo4S1JXZjV5X0lLdnJ3WFFnRDdVa1VRUlFsZERJcWhzWmFabDl3; SIDCC=AJi4QfE7jccAhL9_AX5Mz_j1mWKdaMJRT3gxn37pUKC_4b9N07-EuLhoaA89Qg1IfX5yJaUFZw; wide=1; YSC=A8mBHnZ3mxk; CONSISTENCY=AGDxDeMrse1RsnEqqa73nKA15AlkKsiDXSjHec_enEgxkgLJ-Be10v3taQ4bae75dCmhgY3trQ83aVVDx2iRVm8uv9pPVfwu2rT51mxDEv-bX_mX5FRn_yAGGhPds9Xzjn_ZZzqcE-T9dSV6Vni3BzIF"
     
 }
