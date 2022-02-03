@@ -1,6 +1,10 @@
 {
 
+<<<<<<< HEAD
     "OWNER_ID":["672695020100386846","671678617318850560"],
+=======
+    "OWNER_ID":["672695020100386846"],
+>>>>>>> 9b4dc46b550becef52e803be7559345f2173b542
     "BOT_TOKEN": "",
     "tenorAPI":"ZEEELJXAFQBN",
     "DEFAULT_PREFIX":"v!",
